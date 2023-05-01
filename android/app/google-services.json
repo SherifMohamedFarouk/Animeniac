@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "755552346435",
+    "project_id": "anemeniac",
+    "storage_bucket": "anemeniac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755552346435:android:f49bd74fe4c75a4e40cff6",
+        "android_client_info": {
+          "package_name": "com.animeniac.animeniac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755552346435-432c3kc0h660rihs1mnept9kss7dkhaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnq5qmdvmOdaZs_IhMbAdvRSON68DoLMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755552346435-432c3kc0h660rihs1mnept9kss7dkhaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
