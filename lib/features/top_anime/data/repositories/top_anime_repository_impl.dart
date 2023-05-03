@@ -21,7 +21,7 @@ class TopAnimeRepositoryImpl implements TopAnimeRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteAnimeList = await remoteDataSource.getTopAnimes();
-        return Right(remoteAnimeList);
+        return Right(remoteAnimeList as TopAnimeModel);
       } on ServerException {
         return Left(ServerFailure());
       }

@@ -1,3 +1,4 @@
+import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:animeniac/features/auth/presentation/pages/splash_screen/splash_view.dart';
 import 'package:animeniac/features/top_anime/presentation/anime/animes_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
         BlocProvider(
             create: (_) => di.sl<AnimesBloc>()..add(GetTopAnimesEvent())),
+        BlocProvider(
+            create: (_) => di.sl<AuthCubit>()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
         return Sizer(builder: (context, orientation, deviceType) {
