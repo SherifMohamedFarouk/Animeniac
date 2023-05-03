@@ -1,3 +1,7 @@
+import 'package:animeniac/features/auth/domain/entites/user_data.dart';
+import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import './signup_imports.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -215,7 +219,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             passwordController.text &&
                         nameController.text.isNotEmpty)
                     ? null
-                    : () {},
+                    : () {
+                  signUp();
+                },
               ),
               SizedBox(height: screenHeight * 0.03),
               Padding(
@@ -249,6 +255,14 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
+    );
+  }
+  void signUp() {
+
+    BlocProvider.of<AuthCubit>(context).signUp(
+        email: emailController.text,
+        name: nameController.text,
+        password: passwordController.text,
     );
   }
 

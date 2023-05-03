@@ -1,3 +1,14 @@
+import 'package:animeniac/features/auth/data/data_sources/firebase_data_source.dart';
+import 'package:animeniac/features/auth/data/data_sources/firebase_data_source_impl.dart';
+import 'package:animeniac/features/auth/data/repositories/firebase_repository_impl.dart';
+import 'package:animeniac/features/auth/domain/repositories/firebase_repository.dart';
+import 'package:animeniac/features/auth/domain/use_cases/sign_in_usecase.dart';
+import 'package:animeniac/features/auth/domain/use_cases/sign_out_usecase.dart';
+import 'package:animeniac/features/auth/domain/use_cases/sign_up_usecase.dart';
+import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'core/network/network_info.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -17,18 +28,29 @@ Future<void> init() async {
 
   //Bloc
   sl.registerFactory(() => AnimesBloc(getAllTopAnimes: sl()));
+  sl.registerFactory(() => AuthCubit(signInUseCases: sl(),signUpUseCase: sl()));
   //Usecases
   sl.registerLazySingleton(() => GetTopAnimesUsecase(sl()));
+  sl.registerLazySingleton(()=>SignInUseCase(repository: sl.call()));
+  sl.registerLazySingleton(()=>SignUpUseCase(repository: sl.call()));
+  sl.registerLazySingleton(()=>SignOutUseCase(repository: sl.call()));
 
   //Repository
   sl.registerLazySingleton<TopAnimeRepository>(() => TopAnimeRepositoryImpl(
         networkInfo: sl(),
         remoteDataSource: sl(),
       ));
+  sl.registerLazySingleton<FirebaseRepository>(
+          () => FirebaseRepositoryImpl(remoteDataSource: sl.call()));
+
 
   //Datasources
   sl.registerLazySingleton<TopAnimeRemoteDataSource>(
       () => TopAnimeRemoteDataSourceImpl(client: sl()));
+
+  sl.registerLazySingleton<FirebaseDataSource>(
+          () => FirebaseDataSourceImpl(sl.call(), sl.call(),));
+
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   //! External
@@ -36,4 +58,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => InternetConnectionChecker());
+
+  final auth = FirebaseAuth.instance;
+  final fireStore = FirebaseFirestore.instance;
+  sl.registerLazySingleton(() => auth);
+  sl.registerLazySingleton(() => fireStore);
 }

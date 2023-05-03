@@ -1,3 +1,5 @@
+import 'package:animeniac/core/error/failures.dart';
+import 'package:animeniac/core/strings/failures.dart';
 import 'package:animeniac/features/top_anime/data/models/top_anime_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
