@@ -21,7 +21,7 @@ class Data {
   Aired? aired;
   String? duration;
   String? rating;
-  double? score;
+  dynamic score;
   int? scoredBy;
   int? rank;
   int? popularity;
@@ -68,15 +68,14 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     malId = json['mal_id'];
     url = json['url'];
-    images =
-        json['images'] != null ? new Images.fromJson(json['images']) : null;
+    images = json['images'] != null ? Images.fromJson(json['images']) : null;
     trailer =
-        json['trailer'] != null ? new Trailer.fromJson(json['trailer']) : null;
+        json['trailer'] != null ? Trailer.fromJson(json['trailer']) : null;
     approved = json['approved'];
     if (json['titles'] != null) {
       titles = <Titles>[];
       json['titles'].forEach((v) {
-        titles!.add(new Titles.fromJson(v));
+        titles!.add(Titles.fromJson(v));
       });
     }
     title = json['title'];
@@ -88,7 +87,7 @@ class Data {
     episodes = json['episodes'];
     status = json['status'];
     airing = json['airing'];
-    aired = json['aired'] != null ? new Aired.fromJson(json['aired']) : null;
+    aired = json['aired'] != null ? Aired.fromJson(json['aired']) : null;
     duration = json['duration'];
     rating = json['rating'];
     score = json['score'];
@@ -102,47 +101,47 @@ class Data {
     season = json['season'];
     year = json['year'];
     broadcast = json['broadcast'] != null
-        ? new Broadcast.fromJson(json['broadcast'])
+        ? Broadcast.fromJson(json['broadcast'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['mal_id'] = this.malId;
-    data['url'] = this.url;
-    if (this.trailer != null) {
-      data['trailer'] = this.trailer!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['mal_id'] = malId;
+    data['url'] = url;
+    if (trailer != null) {
+      data['trailer'] = trailer!.toJson();
     }
-    data['approved'] = this.approved;
-    if (this.titles != null) {
-      data['titles'] = this.titles!.map((v) => v.toJson()).toList();
+    data['approved'] = approved;
+    if (titles != null) {
+      data['titles'] = titles!.map((v) => v.toJson()).toList();
     }
-    data['title'] = this.title;
-    data['title_english'] = this.titleEnglish;
-    data['title_japanese'] = this.titleJapanese;
-    data['title_synonyms'] = this.titleSynonyms;
-    data['type'] = this.type;
-    data['source'] = this.source;
-    data['episodes'] = this.episodes;
-    data['status'] = this.status;
-    data['airing'] = this.airing;
-    if (this.aired != null) {
-      data['aired'] = this.aired!.toJson();
+    data['title'] = title;
+    data['title_english'] = titleEnglish;
+    data['title_japanese'] = titleJapanese;
+    data['title_synonyms'] = titleSynonyms;
+    data['type'] = type;
+    data['source'] = source;
+    data['episodes'] = episodes;
+    data['status'] = status;
+    data['airing'] = airing;
+    if (aired != null) {
+      data['aired'] = aired!.toJson();
     }
-    data['duration'] = this.duration;
-    data['rating'] = this.rating;
-    data['score'] = this.score;
-    data['scored_by'] = this.scoredBy;
-    data['rank'] = this.rank;
-    data['popularity'] = this.popularity;
-    data['members'] = this.members;
-    data['favorites'] = this.favorites;
-    data['synopsis'] = this.synopsis;
-    data['background'] = this.background;
-    data['season'] = this.season;
-    data['year'] = this.year;
-    if (this.broadcast != null) {
-      data['broadcast'] = this.broadcast!.toJson();
+    data['duration'] = duration;
+    data['rating'] = rating;
+    data['score'] = score;
+    data['scored_by'] = scoredBy;
+    data['rank'] = rank;
+    data['popularity'] = popularity;
+    data['members'] = members;
+    data['favorites'] = favorites;
+    data['synopsis'] = synopsis;
+    data['background'] = background;
+    data['season'] = season;
+    data['year'] = year;
+    if (broadcast != null) {
+      data['broadcast'] = broadcast!.toJson();
     }
 
     return data;

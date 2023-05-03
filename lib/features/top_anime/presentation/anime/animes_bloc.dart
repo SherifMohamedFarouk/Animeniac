@@ -20,20 +20,22 @@ class AnimesBloc extends Bloc<AnimesEvent, AnimeState> {
     on<AnimesEvent>((event, emit) async {
       if (event is GetTopAnimesEvent) {
         emit(LoadingAnimeState());
-        final failureOrAnimes = await getAllTopAnimes();
+        final failureOrAnimes = await getAllTopAnimes.call();
         emit(_mapFailureOrAnimesToState(failureOrAnimes));
       } else if (event is RefreshAnimesEvent) {
         emit(LoadingAnimeState());
-        final failureOrPosts = await getAllTopAnimes();
-        emit(_mapFailureOrAnimesToState(failureOrPosts));
+        final failureOrAnimes = await getAllTopAnimes();
+        emit(_mapFailureOrAnimesToState(failureOrAnimes));
       }
     });
   }
   AnimeState _mapFailureOrAnimesToState(Either<Failure, TopAnimeModel> either) {
     return either.fold(
-      (failure) => ErrorAnimesState(message: _mapFailureTOMessage(failure)),
-      (posts) => LoadedAnimeState(animes: posts),
-    );
+        (failure) => ErrorAnimesState(message: _mapFailureTOMessage(failure)),
+        (animes) {
+      print('this is ${animes.data![0].titleEnglish}');
+      return LoadedAnimeState(animes: animes);
+    });
   }
 
   String _mapFailureTOMessage(Failure failure) {

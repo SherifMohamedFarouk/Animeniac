@@ -8,12 +8,12 @@ import 'package:animeniac/features/auth/domain/use_cases/sign_up_usecase.dart';
 import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/network_info.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/top_anime/data/data_sources/top_anime_remote_data_source.dart';
 import 'features/top_anime/data/repositories/top_anime_repository_impl.dart';
@@ -28,12 +28,13 @@ Future<void> init() async {
 
   //Bloc
   sl.registerFactory(() => AnimesBloc(getAllTopAnimes: sl()));
-  sl.registerFactory(() => AuthCubit(signInUseCases: sl(),signUpUseCase: sl()));
+  sl.registerFactory(
+      () => AuthCubit(signInUseCases: sl(), signUpUseCase: sl()));
   //Usecases
   sl.registerLazySingleton(() => GetTopAnimesUsecase(sl()));
-  sl.registerLazySingleton(()=>SignInUseCase(repository: sl.call()));
-  sl.registerLazySingleton(()=>SignUpUseCase(repository: sl.call()));
-  sl.registerLazySingleton(()=>SignOutUseCase(repository: sl.call()));
+  sl.registerLazySingleton(() => SignInUseCase(repository: sl.call()));
+  sl.registerLazySingleton(() => SignUpUseCase(repository: sl.call()));
+  sl.registerLazySingleton(() => SignOutUseCase(repository: sl.call()));
 
   //Repository
   sl.registerLazySingleton<TopAnimeRepository>(() => TopAnimeRepositoryImpl(
@@ -41,15 +42,16 @@ Future<void> init() async {
         remoteDataSource: sl(),
       ));
   sl.registerLazySingleton<FirebaseRepository>(
-          () => FirebaseRepositoryImpl(remoteDataSource: sl.call()));
-
+      () => FirebaseRepositoryImpl(remoteDataSource: sl.call()));
 
   //Datasources
   sl.registerLazySingleton<TopAnimeRemoteDataSource>(
       () => TopAnimeRemoteDataSourceImpl(client: sl()));
 
-  sl.registerLazySingleton<FirebaseDataSource>(
-          () => FirebaseDataSourceImpl(sl.call(), sl.call(),));
+  sl.registerLazySingleton<FirebaseDataSource>(() => FirebaseDataSourceImpl(
+        sl.call(),
+        sl.call(),
+      ));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

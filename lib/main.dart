@@ -1,6 +1,7 @@
 import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:animeniac/features/auth/presentation/pages/splash_screen/splash_view.dart';
 import 'package:animeniac/features/top_anime/presentation/anime/animes_bloc.dart';
+import 'package:animeniac/features/top_anime/presentation/views/top_anime_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:sizer/sizer.dart';
@@ -29,8 +30,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
         BlocProvider(
             create: (_) => di.sl<AnimesBloc>()..add(GetTopAnimesEvent())),
-        BlocProvider(
-            create: (_) => di.sl<AuthCubit>()),
+        BlocProvider(create: (_) => di.sl<AuthCubit>()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
         return Sizer(builder: (context, orientation, deviceType) {
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             title: 'Animeniac',
             theme: AppTheme.themeData(state.isDarkThemeOn, context),
             initialRoute: "/",
-            routes: {"/": (context) => const SplashScreen()},
+            routes: {"/": (context) => const TopAnimeView()},
           );
         });
       }),

@@ -10,3 +10,5 @@ abstract class AnimesEvent extends Equatable {
 class GetTopAnimesEvent extends AnimesEvent {}
 
 class RefreshAnimesEvent extends AnimesEvent {}
+
+class FetchMoreAnimeEvent extends AnimesEvent {}

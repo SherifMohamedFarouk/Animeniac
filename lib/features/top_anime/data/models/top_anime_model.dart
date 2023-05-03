@@ -11,20 +11,20 @@ class TopAnimeModel {
 
   TopAnimeModel.fromJson(Map<String, dynamic> json) {
     pagination = json['pagination'] != null
-        ? new Pagination.fromJson(json['pagination'])
+        ? Pagination.fromJson(json['pagination'])
         : null;
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pagination != null) {
-      data['pagination'] = this.pagination!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (pagination != null) {
+      data['pagination'] = pagination!.toJson();
     }
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
@@ -40,8 +40,8 @@ class Images {
   Images({this.jpg, this.webp});
 
   Images.fromJson(Map<String, dynamic> json) {
-    jpg = json['jpg'] != null ? new Jpg.fromJson(json['jpg']) : null;
-    webp = json['webp'] != null ? new Jpg.fromJson(json['webp']) : null;
+    jpg = json['jpg'] != null ? Jpg.fromJson(json['jpg']) : null;
+    webp = json['webp'] != null ? Jpg.fromJson(json['webp']) : null;
   }
 }
 
@@ -57,17 +57,16 @@ class Trailer {
     youtubeId = json['youtube_id'];
     url = json['url'];
     embedUrl = json['embed_url'];
-    images =
-        json['images'] != null ? new ImagesUrl.fromJson(json['images']) : null;
+    images = json['images'] != null ? ImagesUrl.fromJson(json['images']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['youtube_id'] = this.youtubeId;
-    data['url'] = this.url;
-    data['embed_url'] = this.embedUrl;
-    if (this.images != null) {
-      data['images'] = this.images!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['youtube_id'] = youtubeId;
+    data['url'] = url;
+    data['embed_url'] = embedUrl;
+    if (images != null) {
+      data['images'] = images!.toJson();
     }
     return data;
   }
@@ -85,9 +84,9 @@ class Titles {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['title'] = this.title;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['title'] = title;
     return data;
   }
 }
@@ -99,17 +98,17 @@ class Prop {
   Prop({this.from, this.to});
 
   Prop.fromJson(Map<String, dynamic> json) {
-    from = json['from'] != null ? new From.fromJson(json['from']) : null;
-    to = json['to'] != null ? new From.fromJson(json['to']) : null;
+    from = json['from'] != null ? From.fromJson(json['from']) : null;
+    to = json['to'] != null ? From.fromJson(json['to']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.from != null) {
-      data['from'] = this.from!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (from != null) {
+      data['from'] = from!.toJson();
     }
-    if (this.to != null) {
-      data['to'] = this.to!.toJson();
+    if (to != null) {
+      data['to'] = to!.toJson();
     }
     return data;
   }
@@ -129,10 +128,10 @@ class From {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['day'] = this.day;
-    data['month'] = this.month;
-    data['year'] = this.year;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['day'] = day;
+    data['month'] = month;
+    data['year'] = year;
     return data;
   }
 }
@@ -153,11 +152,11 @@ class Broadcast {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['day'] = this.day;
-    data['time'] = this.time;
-    data['timezone'] = this.timezone;
-    data['string'] = this.string;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['day'] = day;
+    data['time'] = time;
+    data['timezone'] = timezone;
+    data['string'] = string;
     return data;
   }
 }
@@ -178,11 +177,11 @@ class Producers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['mal_id'] = this.malId;
-    data['type'] = this.type;
-    data['name'] = this.name;
-    data['url'] = this.url;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['mal_id'] = malId;
+    data['type'] = type;
+    data['name'] = name;
+    data['url'] = url;
     return data;
   }
 }

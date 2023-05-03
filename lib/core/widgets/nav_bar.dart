@@ -1,3 +1,4 @@
+import 'package:animeniac/features/top_anime/presentation/views/top_anime_view.dart';
 import 'package:flutter/material.dart';
 
 import '../util/responsive.dart';
@@ -13,7 +14,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _screens = [
-    // HomeScreen(),
+    const TopAnimeView()
     // Scaffold(),
     // Scaffold(),
     // Scaffold(),
