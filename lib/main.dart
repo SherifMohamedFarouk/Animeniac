@@ -1,5 +1,6 @@
 import 'package:animeniac/features/auth/presentation/pages/splash_screen/splash_view.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:sizer/sizer.dart';
 import 'core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,10 @@ import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await di.init();
   runApp(const MyApp());
 }

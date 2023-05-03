@@ -44,7 +44,11 @@ dependencies:
   get_it: ^7.3.0
   internet_connection_checker: ^1.0.0+1
   flutter_feather_icons: ^2.0.0+1
-  provider: ^6.0.5
+  firebase_core: ^2.10.0
+  cloud_firestore: ^4.5.3
+  firebase_auth: ^4.4.2
+  firebase_analytics: ^10.2.1
+  
 
 dev_dependencies:
   flutter_test:
