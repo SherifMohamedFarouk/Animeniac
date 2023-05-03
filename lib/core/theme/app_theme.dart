@@ -13,8 +13,10 @@ class AppTheme {
 class ThemeColors {
   const ThemeColors._();
   static final lightTheme = ThemeData(
+      colorScheme: ColorScheme.fromSwatch(
+        brightness: Brightness.light,
+      ).copyWith(onPrimary: lightTextColor),
       iconTheme: IconThemeData(color: lightIconColor),
-      brightness: Brightness.light,
       fontFamily: 'Poppins',
       primaryColor: primaryColor,
       backgroundColor: lightBackgroundColor,
@@ -23,9 +25,9 @@ class ThemeColors {
       appBarTheme: AppBarTheme(
         titleTextStyle: TextStyle(color: lightTextColor, fontSize: 22),
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: whiteColor,
+          statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.dark,
+          // statusBarBrightness: Brightness.dark,
         ),
         backgroundColor: lightBackgroundColor,
       ),
@@ -44,8 +46,10 @@ class ThemeColors {
       ));
 
   static final darkTheme = ThemeData(
+      colorScheme: ColorScheme.fromSwatch(
+        brightness: Brightness.dark,
+      ).copyWith(onPrimary: darkTextColor),
       iconTheme: IconThemeData(color: darkIconColor),
-      brightness: Brightness.dark,
       fontFamily: 'Poppins',
       primaryColor: primaryColor,
       backgroundColor: darkBackgroundColor,
@@ -57,9 +61,9 @@ class ThemeColors {
       appBarTheme: AppBarTheme(
         titleTextStyle: TextStyle(color: darkTextColor, fontSize: 22),
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: blackColor,
+          statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.light,
+          // statusBarBrightness: Brightness.light,
         ),
         backgroundColor: darkBackgroundColor,
       ),

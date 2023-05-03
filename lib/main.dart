@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Animeniac',
-            theme: AppTheme.themeData(state.isDarkThemeOn, context),
+            theme: AppTheme.themeData(!state.isDarkThemeOn, context),
             initialRoute: "/",
             routes: {"/": (context) => const TopAnimeView()},
           );

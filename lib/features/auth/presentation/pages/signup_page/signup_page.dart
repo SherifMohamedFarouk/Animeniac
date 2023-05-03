@@ -101,7 +101,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     FocusScope.of(context).unfocus();
                   },
                   textStyle: TextStyle(
-                    color: !validateEmail ? blackColor : errorColor,
+                    color: !validateEmail
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : errorColor,
                   )),
               SizedBox(
                 height: screenHeight * 0.02,
@@ -148,7 +150,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     FocusScope.of(context).unfocus();
                   },
                   textStyle: TextStyle(
-                    color: !validatePassword ? blackColor : errorColor,
+                    color: !validatePassword
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : errorColor,
                   )),
               SizedBox(
                 height: screenHeight * 0.006,
@@ -200,7 +204,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     FocusScope.of(context).unfocus();
                   },
                   textStyle: TextStyle(
-                    color: !validateConfirmPassword ? blackColor : errorColor,
+                    color: !validateConfirmPassword
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : errorColor,
                   )),
               SizedBox(
                 height: screenHeight * 0.02,
@@ -220,8 +226,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         nameController.text.isNotEmpty)
                     ? null
                     : () {
-                  signUp();
-                },
+                        signUp();
+                      },
               ),
               SizedBox(height: screenHeight * 0.03),
               Padding(
@@ -257,12 +263,12 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-  void signUp() {
 
+  void signUp() {
     BlocProvider.of<AuthCubit>(context).signUp(
-        email: emailController.text,
-        name: nameController.text,
-        password: passwordController.text,
+      email: emailController.text,
+      name: nameController.text,
+      password: passwordController.text,
     );
   }
 
