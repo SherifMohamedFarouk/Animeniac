@@ -13,51 +13,63 @@ class AppTheme {
 class ThemeColors {
   const ThemeColors._();
   static final lightTheme = ThemeData(
-    iconTheme: IconThemeData(color: lightIconColor),
-    brightness: Brightness.light,
-    fontFamily: 'Poppins',
-    primaryColor: primaryColor,
-    backgroundColor: lightBackgroundColor,
-    scaffoldBackgroundColor: lightBackgroundColor,
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    appBarTheme: AppBarTheme(
-      titleTextStyle: TextStyle(color: lightTextColor, fontSize: 22),
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: whiteColor,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.dark,
-      ),
+      iconTheme: IconThemeData(color: lightIconColor),
+      brightness: Brightness.light,
+      fontFamily: 'Poppins',
+      primaryColor: primaryColor,
       backgroundColor: lightBackgroundColor,
-    ),
-    textTheme: TextTheme(
-      labelLarge: TextStyle(color: lightTextColor),
-      displayLarge: TextStyle(color: lightTextColor),
-      bodyLarge: TextStyle(color: lightTextColor),
-      titleLarge: TextStyle(color: lightTextColor),
-    ),
-  );
+      scaffoldBackgroundColor: lightBackgroundColor,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      appBarTheme: AppBarTheme(
+        titleTextStyle: TextStyle(color: lightTextColor, fontSize: 22),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: whiteColor,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.dark,
+        ),
+        backgroundColor: lightBackgroundColor,
+      ),
+      textTheme: TextTheme(
+        labelLarge: TextStyle(color: lightTextColor),
+        displayLarge: TextStyle(color: lightTextColor),
+        bodyLarge: TextStyle(color: lightTextColor),
+        titleLarge: TextStyle(color: lightTextColor),
+      ),
+      // Bottom nav bar theme
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: lightBackgroundColor,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: lightTextColor,
+        type: BottomNavigationBarType.fixed,
+      ));
 
   static final darkTheme = ThemeData(
-    iconTheme: IconThemeData(color: darkIconColor),
-    brightness: Brightness.dark,
-    fontFamily: 'Poppins',
-    primaryColor: primaryColor,
-    backgroundColor: darkBackgroundColor,
-    scaffoldBackgroundColor: const Color(0xFF00040F),
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    textTheme: TextTheme(
-      labelLarge: TextStyle(color: darkTextColor),
-    ),
-    appBarTheme: AppBarTheme(
-      titleTextStyle: TextStyle(color: darkTextColor, fontSize: 22),
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: blackColor,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.light,
-      ),
+      iconTheme: IconThemeData(color: darkIconColor),
+      brightness: Brightness.dark,
+      fontFamily: 'Poppins',
+      primaryColor: primaryColor,
       backgroundColor: darkBackgroundColor,
-    ),
-  );
+      scaffoldBackgroundColor: const Color(0xFF00040F),
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      textTheme: TextTheme(
+        labelLarge: TextStyle(color: darkTextColor),
+      ),
+      appBarTheme: AppBarTheme(
+        titleTextStyle: TextStyle(color: darkTextColor, fontSize: 22),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: blackColor,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.light,
+        ),
+        backgroundColor: darkBackgroundColor,
+      ),
+      // Bottom nav bar theme
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: darkBackgroundColor,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: darkTextColor,
+        type: BottomNavigationBarType.fixed,
+      ));
   static Brightness get currentSystemBrightness =>
       SchedulerBinding.instance.window.platformBrightness;
 }

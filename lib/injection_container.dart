@@ -4,33 +4,31 @@ import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'features/top_anime/data/data_sources/top_anime_remote_data_source.dart';
+import 'features/top_anime/data/repositories/top_anime_repository_impl.dart';
+import 'features/top_anime/domain/repositories/top_anime_repository.dart';
+import 'features/top_anime/domain/use_cases/get_top_animes.dart';
+import 'features/top_anime/presentation/anime/animes_bloc.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
   //! Features: posts
 
-  // //Bloc
-  // sl.registerFactory(() => PostsBloc(getAllPosts: sl()));
-  // sl.registerFactory(() => AddDeleteUpdatePostBloc(
-  //       addPost: sl(),
-  //       deletePost: sl(),
-  //       updatePost: sl(),
-  //     ));
-  // //Usecases
-  // sl.registerLazySingleton(() => GetAllPostsUsecase(sl()));
-  // sl.registerLazySingleton(() => AddPostUsecase(sl()));
-  // sl.registerLazySingleton(() => DeletePostUsecase(sl()));
-  // sl.registerLazySingleton(() => UpdatePostUsecase(sl()));
-  // //Repository
-  // sl.registerLazySingleton<PostsRepository>(() => PostsRepositoryImpl(
-  //     networkInfo: sl(), remoteDataSource: sl(), localDataSource: sl()));
+  //Bloc
+  sl.registerFactory(() => AnimesBloc(getAllTopAnimes: sl()));
+  //Usecases
+  sl.registerLazySingleton(() => GetTopAnimesUsecase(sl()));
 
-  // //Datasources
-  // sl.registerLazySingleton<PostRemoteDataSource>(
-  //     () => PostRemoteDataSourceImpl(client: sl()));
-  // sl.registerLazySingleton<PostLocalDataSource>(
-  //     () => PostLocalDataSourceImpl(sharedPreferences: sl()));
+  //Repository
+  sl.registerLazySingleton<TopAnimeRepository>(() => TopAnimeRepositoryImpl(
+        networkInfo: sl(),
+        remoteDataSource: sl(),
+      ));
 
+  //Datasources
+  sl.registerLazySingleton<TopAnimeRemoteDataSource>(
+      () => TopAnimeRemoteDataSourceImpl(client: sl()));
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   //! External
