@@ -15,7 +15,7 @@ class ThemeColors {
   static final lightTheme = ThemeData(
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
-      ).copyWith(onPrimary: lightTextColor),
+      ).copyWith(onPrimary: lightTextColor, onSecondary: blackColor),
       iconTheme: IconThemeData(color: lightIconColor),
       fontFamily: 'Poppins',
       primaryColor: primaryColor,
@@ -48,7 +48,7 @@ class ThemeColors {
   static final darkTheme = ThemeData(
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.dark,
-      ).copyWith(onPrimary: darkTextColor),
+      ).copyWith(onPrimary: darkTextColor, onSecondary: whiteColor),
       iconTheme: IconThemeData(color: darkIconColor),
       fontFamily: 'Poppins',
       primaryColor: primaryColor,

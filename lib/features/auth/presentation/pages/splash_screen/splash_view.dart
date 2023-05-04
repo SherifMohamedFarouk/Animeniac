@@ -1,4 +1,5 @@
 import 'package:animeniac/features/auth/presentation/pages/login_page/login_page.dart';
+import 'package:animeniac/features/nav_screen/nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (BuildContext context) {
-            return const LoginPage();
+            return const NavBarScreen();
           },
         ),
         (_) => false,

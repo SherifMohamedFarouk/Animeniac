@@ -1,22 +1,20 @@
-import 'classes/anime_data.dart';
-import 'classes/anime_image_url.dart';
-import 'classes/anime_jpg.dart';
-import 'classes/anime_pagination.dart';
+import 'classes/manga_data.dart';
+import 'classes/manga_pagination.dart';
 
-class TopAnimeModel {
+class TopMangaModel {
   Pagination? pagination;
-  List<AnimeData>? data;
+  List<MangaData>? data;
 
-  TopAnimeModel({this.pagination, this.data});
+  TopMangaModel({this.pagination, this.data});
 
-  TopAnimeModel.fromJson(Map<String, dynamic> json) {
+  TopMangaModel.fromJson(Map<String, dynamic> json) {
     pagination = json['pagination'] != null
         ? Pagination.fromJson(json['pagination'])
         : null;
     if (json['data'] != null) {
-      data = <AnimeData>[];
+      data = <MangaData>[];
       json['data'].forEach((v) {
-        data!.add(AnimeData.fromJson(v));
+        data!.add(MangaData.fromJson(v));
       });
     }
   }
@@ -33,41 +31,24 @@ class TopAnimeModel {
   }
 }
 
-class Images {
-  Jpg? jpg;
-  Jpg? webp;
+class Jpg {
+  String? imageUrl;
+  String? smallImageUrl;
+  String? largeImageUrl;
 
-  Images({this.jpg, this.webp});
+  Jpg({this.imageUrl, this.smallImageUrl, this.largeImageUrl});
 
-  Images.fromJson(Map<String, dynamic> json) {
-    jpg = json['jpg'] != null ? Jpg.fromJson(json['jpg']) : null;
-    webp = json['webp'] != null ? Jpg.fromJson(json['webp']) : null;
-  }
-}
-
-class Trailer {
-  String? youtubeId;
-  String? url;
-  String? embedUrl;
-  ImagesUrl? images;
-
-  Trailer({this.youtubeId, this.url, this.embedUrl, this.images});
-
-  Trailer.fromJson(Map<String, dynamic> json) {
-    youtubeId = json['youtube_id'];
-    url = json['url'];
-    embedUrl = json['embed_url'];
-    images = json['images'] != null ? ImagesUrl.fromJson(json['images']) : null;
+  Jpg.fromJson(Map<String, dynamic> json) {
+    imageUrl = json['image_url'];
+    smallImageUrl = json['small_image_url'];
+    largeImageUrl = json['large_image_url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['youtube_id'] = youtubeId;
-    data['url'] = url;
-    data['embed_url'] = embedUrl;
-    if (images != null) {
-      data['images'] = images!.toJson();
-    }
+    data['image_url'] = imageUrl;
+    data['small_image_url'] = smallImageUrl;
+    data['large_image_url'] = largeImageUrl;
     return data;
   }
 }
@@ -136,40 +117,15 @@ class From {
   }
 }
 
-class Broadcast {
-  String? day;
-  String? time;
-  String? timezone;
-  String? string;
-
-  Broadcast({this.day, this.time, this.timezone, this.string});
-
-  Broadcast.fromJson(Map<String, dynamic> json) {
-    day = json['day'];
-    time = json['time'];
-    timezone = json['timezone'];
-    string = json['string'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['day'] = day;
-    data['time'] = time;
-    data['timezone'] = timezone;
-    data['string'] = string;
-    return data;
-  }
-}
-
-class Producers {
+class Authors {
   int? malId;
   String? type;
   String? name;
   String? url;
 
-  Producers({this.malId, this.type, this.name, this.url});
+  Authors({this.malId, this.type, this.name, this.url});
 
-  Producers.fromJson(Map<String, dynamic> json) {
+  Authors.fromJson(Map<String, dynamic> json) {
     malId = json['mal_id'];
     type = json['type'];
     name = json['name'];

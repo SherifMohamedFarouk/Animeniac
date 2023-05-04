@@ -4,32 +4,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/global_widgets/loading_indicator.dart';
 import '../../../../core/global_widgets/loading_widget.dart';
 import '../../../../core/global_widgets/message_display_widget.dart';
-import '../../../../injection_container.dart';
-import '../../data/models/top_anime_model.dart';
-import '../anime_bloc/animes_bloc.dart';
-import '../widgets/anime_custom_slider.dart';
-import '../widgets/anime_slider_card.dart';
-import '../widgets/anime_vertical_listview.dart';
-import '../widgets/anime_vertical_listview_card.dart';
 
-class TopAnimeView extends StatelessWidget {
-  const TopAnimeView({super.key});
+import '../../../../injection_container.dart';
+import '../../data/models/top_manga_model.dart';
+import '../manga_bloc/mangas_bloc.dart';
+import '../widgets/manga_custom_slider.dart';
+import '../widgets/manga_slider_card.dart';
+import '../widgets/manga_vertical_listview.dart';
+import '../widgets/manga_vertical_listview_card.dart';
+
+class TopMangaView extends StatelessWidget {
+  const TopMangaView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<AnimesBloc>()..add(GetTopAnimesEvent()),
+      create: (context) => sl<MangasBloc>()..add(GetTopMangasEvent()),
       child: Scaffold(
         // appBar: const TopBar(title: 's'),
-        body: BlocBuilder<AnimesBloc, AnimeState>(
+        body: BlocBuilder<MangasBloc, MangaState>(
           builder: (context, state) {
-            if (state is LoadingAnimeState) {
+            if (state is LoadingMangaState) {
               return const LoadingWidget();
-            } else if (state is LoadedAnimeState) {
+            } else if (state is LoadedMangaState) {
               return RefreshIndicator(
                   onRefresh: () => _onRefresh(context),
-                  child: TopAnimeWidget(animes: state.animes));
-            } else if (state is ErrorAnimesState) {
+                  child: TopMangaWidget(mangas: state.mangas));
+            } else if (state is ErrorMangasState) {
               return MessageDisplayWidget(message: state.message);
             }
             return const LoadingWidget();
@@ -40,43 +41,43 @@ class TopAnimeView extends StatelessWidget {
   }
 
   Future<void> _onRefresh(BuildContext context) async {
-    BlocProvider.of<AnimesBloc>(context).add(RefreshAnimesEvent());
+    BlocProvider.of<MangasBloc>(context).add(RefreshMangasEvent());
   }
 }
 
-class TopAnimeWidget extends StatelessWidget {
-  const TopAnimeWidget({
-    required this.animes,
+class TopMangaWidget extends StatelessWidget {
+  const TopMangaWidget({
+    required this.mangas,
     super.key,
   });
 
-  final TopAnimeModel animes;
+  final TopMangaModel mangas;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AnimesBloc, AnimeState>(
+    return BlocBuilder<MangasBloc, MangaState>(
       builder: (context, state) {
         return SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                AnimeCustomSlider(
+                MangaCustomSlider(
                   itemBuilder: (context, itemIndex, _) {
-                    return AnimeSliderCard(
-                      animeData: animes.data![itemIndex],
+                    return MangaSliderCard(
+                      mangaData: mangas.data![itemIndex],
                       itemIndex: itemIndex,
                     );
                   },
                 ),
-                AnimeVerticalListView(
-                  itemCount: animes.data!.length + 1,
+                MangaVerticalListView(
+                  itemCount: mangas.data!.length + 1,
                   itemBuilder: (context, index) {
                     if (index < 5) {
-                      return SizedBox.shrink();
+                      return const SizedBox.shrink();
                     } else {
-                      if (index < animes.data!.length) {
-                        return AnimeVerticalListViewCard(
-                          animeData: animes.data![index],
+                      if (index < mangas.data!.length) {
+                        return MangaVerticalListViewCard(
+                          mangaData: mangas.data![index],
                         );
                       } else {
                         return const LoadingIndicator();
@@ -84,7 +85,7 @@ class TopAnimeWidget extends StatelessWidget {
                     }
                   },
                   addEvent: () {
-                    context.read<AnimesBloc>().add(FetchMoreAnimeEvent());
+                    context.read<MangasBloc>().add(FetchMoreMangaEvent());
                   },
                 ),
               ],

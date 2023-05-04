@@ -1,8 +1,8 @@
 import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:animeniac/features/auth/presentation/pages/splash_screen/splash_view.dart';
-import 'package:animeniac/features/top_anime/presentation/anime/animes_bloc.dart';
-import 'package:animeniac/features/top_anime/presentation/views/top_anime_view.dart';
+import 'package:animeniac/features/top_anime/presentation/anime_bloc/animes_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'features/top_manga/presentation/manga_bloc/mangas_bloc.dart';
 import 'firebase_options.dart';
 import 'package:sizer/sizer.dart';
 import 'core/theme/app_theme.dart';
@@ -29,7 +29,11 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
         BlocProvider(
-            create: (_) => di.sl<AnimesBloc>()..add(GetTopAnimesEvent())),
+          create: (_) => di.sl<AnimesBloc>()..add(GetTopAnimesEvent()),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<MangasBloc>()..add(GetTopMangasEvent()),
+        ),
         BlocProvider(create: (_) => di.sl<AuthCubit>()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
@@ -37,9 +41,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Animeniac',
-            theme: AppTheme.themeData(!state.isDarkThemeOn, context),
+            theme: AppTheme.themeData(state.isDarkThemeOn, context),
             initialRoute: "/",
-            routes: {"/": (context) => const TopAnimeView()},
+            routes: {"/": (context) => const SplashScreen()},
           );
         });
       }),
