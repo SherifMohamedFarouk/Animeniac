@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             title: 'Animeniac',
             theme: AppTheme.themeData(state.isDarkThemeOn, context),
             initialRoute: "/",
-            routes: {"/": (context) => const TopAnimeView()},
+            routes: {"/": (context) => const SplashScreen()},
           );
         });
       }),

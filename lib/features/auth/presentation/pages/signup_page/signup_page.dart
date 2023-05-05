@@ -101,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     FocusScope.of(context).unfocus();
                   },
                   textStyle: TextStyle(
-                    color: !validateEmail ? blackColor : errorColor,
+                    color: !validateEmail ? Theme.of(context).colorScheme.onPrimary : errorColor,
                   )),
               SizedBox(
                 height: screenHeight * 0.02,
@@ -258,14 +258,12 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
   void signUp() {
-
     BlocProvider.of<AuthCubit>(context).signUp(
         email: emailController.text,
         name: nameController.text,
         password: passwordController.text,
     );
   }
-
   // functions
   void emailCheck() {
     if (emailController.text.isEmpty) {

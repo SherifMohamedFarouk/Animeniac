@@ -13,6 +13,8 @@ class AppTheme {
 class ThemeColors {
   const ThemeColors._();
   static final lightTheme = ThemeData(
+    colorScheme: ColorScheme.fromSwatch(
+    ).copyWith(onPrimary: lightTextColor),
       iconTheme: IconThemeData(color: lightIconColor),
       brightness: Brightness.light,
       fontFamily: 'Poppins',
@@ -44,6 +46,8 @@ class ThemeColors {
       ));
 
   static final darkTheme = ThemeData(
+      colorScheme: ColorScheme.fromSwatch(
+      ).copyWith(onPrimary: darkTextColor),
       iconTheme: IconThemeData(color: darkIconColor),
       brightness: Brightness.dark,
       fontFamily: 'Poppins',
