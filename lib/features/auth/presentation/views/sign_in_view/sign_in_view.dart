@@ -1,15 +1,15 @@
-import './login_imports.dart';
+import './sign_in_imports.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({
+class SignInView extends StatefulWidget {
+  const SignInView({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignInView> createState() => _SignInViewState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -22,8 +22,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  LoginBody loginBody(
+  SignInBody loginBody(
       double screenWidth, double screenHeight, BuildContext context) {
-    return const LoginBody();
+    return const SignInBody();
   }
 }

@@ -1,17 +1,15 @@
-import 'package:animeniac/features/auth/domain/entites/user_data.dart';
-import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:animeniac/localization/app_localizations.dart';
 
-import './signup_imports.dart';
+import './sign_up_imports.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpViewState extends State<SignUpView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -51,8 +49,8 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size(screenWidth, screenHeight * 0.07),
-          child: const AppBarWidget(
-            title: "Sign up",
+          child: AppBarWidget(
+            title: "sign_up".tr(context),
           ),
         ),
         body: SingleChildScrollView(
@@ -70,8 +68,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 textEditingController: nameController,
                 keyboardType: TextInputType.name,
                 obscureText: false,
-                hintText: "Enter Name",
-                labelText: "Name",
+                hintText: "enter_name".tr(context),
+                labelText: "name".tr(context),
                 errorText: validateName ? validateNameText : "",
                 onEditingComplete: () async {
                   FocusScope.of(context).unfocus();
@@ -88,8 +86,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   textEditingController: emailController,
                   keyboardType: TextInputType.emailAddress,
                   obscureText: false,
-                  hintText: "Email",
-                  labelText: "Email",
+                  hintText: "email".tr(context),
+                  labelText: "email".tr(context),
                   errorText: validateEmail ? emailErrorText : "",
                   onFieldSubmitted: (value) {
                     emailCheck();
@@ -112,8 +110,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   textEditingController: passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: !showPassword,
-                  hintText: "Password",
-                  labelText: "Password",
+                  hintText: "password".tr(context),
+                  labelText: "password".tr(context),
                   validate: validatePassword,
                   suffixIcon: !showPassword
                       ? IconButton(
@@ -157,8 +155,8 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(
                 height: screenHeight * 0.006,
               ),
-              const Text(
-                "Password should contain upper case, lower case, number, symbol, 8 characters at least",
+              Text(
+                "pw_text".tr(context),
               ),
               SizedBox(
                 height: screenHeight * 0.02,
@@ -168,8 +166,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   textEditingController: confirmPasswordController,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: !showConfirmPassword,
-                  hintText: "Confirm Password",
-                  labelText: "Confirm Password",
+                  hintText: "confirm_password".tr(context),
+                  labelText: "confrim_password".tr(context),
                   suffixIcon: !showConfirmPassword
                       ? IconButton(
                           icon: Icon(FeatherIcons.eyeOff,
@@ -218,7 +216,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.all(0),
                 screenHeight: screenHeight,
                 screenWidth: screenWidth,
-                title: "Sign Up",
+                title: "sign_up".tr(context),
                 onPressed: !(emailController.text.isValidEmail &&
                         passwordController.text.isValidPassword &&
                         confirmPasswordController.text ==
@@ -235,23 +233,18 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Have an Account?",
+                    Text(
+                      "have_acc".tr(context),
                       overflow: TextOverflow.ellipsis,
                     ),
                     InkWell(
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
-                            ),
-                            (route) => false);
+                        Navigator.pop(context);
                       },
-                      child:
-                          const Text(" Login", overflow: TextOverflow.ellipsis),
+                      child: Text("log_in".tr(context),
+                          overflow: TextOverflow.ellipsis),
                     ),
                   ],
                 ),
@@ -276,12 +269,12 @@ class _SignUpPageState extends State<SignUpPage> {
   void emailCheck() {
     if (emailController.text.isEmpty) {
       setState(() {
-        emailErrorText = "Please enter an email";
+        emailErrorText = "enter_email".tr(context);
         validateEmail = true;
       });
     } else if (!emailController.text.isValidEmail) {
       setState(() {
-        emailErrorText = "Please enter a valid email";
+        emailErrorText = "enter_valid_email".tr(context);
         validateEmail = true;
       });
     } else if (emailController.text.isValidEmail) {
@@ -299,12 +292,12 @@ class _SignUpPageState extends State<SignUpPage> {
     if (passwordController.text.isEmpty) {
       setState(() {
         validatePassword = true;
-        passwordText = "Please enter a password";
+        passwordText = "enter_pw".tr(context);
       });
     } else if (!passwordController.text.isValidPassword) {
       setState(() {
         validatePassword = true;
-        passwordText = "Please enter a valid password";
+        passwordText = "enter_valid_pw".tr(context);
       });
     } else if (passwordController.text.isValidPassword) {
       setState(() {
@@ -323,7 +316,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (passwordController.text.isEmpty) {
       setState(() {
         validateConfirmPassword = true;
-        confirmPasswordText = "Please enter a confirm password";
+        confirmPasswordText = "enter_confirm_pw".tr(context);
       });
     } else if (passwordController.text != confirmPasswordController.text) {
       setState(() {
@@ -342,12 +335,12 @@ class _SignUpPageState extends State<SignUpPage> {
     if (nameController.text.isEmpty) {
       setState(() {
         validateName = true;
-        validateNameText = "field is empty";
+        validateNameText = "empty_field".tr(context);
       });
     } else if (!nameController.text.isValidName) {
       setState(() {
         validateName = true;
-        validateNameText = "Please enter a valid name";
+        validateNameText = "enter_valid_name".tr(context);
       });
     } else if (nameController.text.isValidName) {
       setState(() {

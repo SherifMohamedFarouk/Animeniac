@@ -1,10 +1,11 @@
-import 'package:animeniac/features/auth/presentation/pages/login_page/login_page.dart';
 import 'package:animeniac/features/settings/settings_screen.dart';
 import 'package:animeniac/features/top_anime/presentation/views/top_anime_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/global_widgets/custom_tab_bar.dart';
 import '../../core/global_widgets/top_bar.dart';
+
+import '../auth/presentation/views/sign_in_view/sign_in_view.dart';
 import '../top_manga/presentation/views/top_manga_view.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final List<Widget> _screens = [
     const TopAnimeView(),
     const TopMangaView(),
-    const LoginPage(),
+    const SignInView(),
     const SettingsScreen()
 
     // Scaffold(),
@@ -37,7 +38,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
+    // final Size screenSize = MediaQuery.of(context).size;
     return DefaultTabController(
         length: _icons.length,
         child: Scaffold(

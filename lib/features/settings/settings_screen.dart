@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/theme/cubit/theme_cubit.dart';
 import '../../core/global_widgets/settings_widget.dart';
+import '../../localization/lang_cubit/locale_cubit.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -21,6 +22,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return Scaffold(
           body: Column(
             children: [
+              BlocConsumer<LocaleCubit, ChangeLocaleState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return DropdownButton<String>(
+                    value: state.locale.languageCode,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: ['ar', 'en'].map((String items) {
+                      return DropdownMenuItem<String>(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        context.read<LocaleCubit>().changeLanguage(newValue);
+                      }
+                    },
+                  );
+                },
+              ),
               ListTile(
                 leading: Icon(
                   state.isDarkThemeOn

@@ -5,17 +5,14 @@ class UserModel extends UserData {
     name = "",
     email = "",
     uid = "",
-  }) : super(name: name,
-    email: email,uid:uid);
+  }) : super(name: name, email: email, uid: uid);
 
-
-
-  Map<String,dynamic> toJson(){
-    final Map<String,dynamic> data = Map<String,dynamic>();
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['uid'] = this.uid;
+  @override
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['email'] = email;
+    data['uid'] = uid;
     return data;
-
   }
 }

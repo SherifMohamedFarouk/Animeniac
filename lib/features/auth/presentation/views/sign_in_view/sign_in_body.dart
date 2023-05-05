@@ -1,13 +1,15 @@
-import './login_imports.dart';
+import 'package:animeniac/localization/app_localizations.dart';
 
-class LoginBody extends StatefulWidget {
-  const LoginBody({super.key});
+import 'sign_in_imports.dart';
+
+class SignInBody extends StatefulWidget {
+  const SignInBody({super.key});
 
   @override
-  State<LoginBody> createState() => _LoginBodyState();
+  State<SignInBody> createState() => _SignInBodyState();
 }
 
-class _LoginBodyState extends State<LoginBody> {
+class _SignInBodyState extends State<SignInBody> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool showPassword = false;
@@ -17,49 +19,6 @@ class _LoginBodyState extends State<LoginBody> {
   String passwordText = "";
   bool isEmailDone = false;
   bool isPasswordDone = false;
-  void emailCheck() {
-    if (emailController.text.isEmpty) {
-      setState(() {
-        emailErrorText = "Please enter an email";
-        validateEmail = true;
-      });
-    } else if (!emailController.text.isValidEmail) {
-      setState(() {
-        emailErrorText = "Please enter a valid email";
-        validateEmail = true;
-      });
-    } else if (emailController.text.isValidEmail) {
-      setState(() {
-        validateEmail = false;
-        emailErrorText = "";
-      });
-    } else {
-      setState(() {
-        validateEmail = false;
-        emailErrorText = "";
-      });
-    }
-  }
-
-  void passwordCheck() {
-    if (passwordController.text.isEmpty) {
-      setState(() {
-        validatePassword = true;
-      });
-    } else if (!passwordController.text.isValidPassword) {
-      setState(() {
-        validatePassword = true;
-      });
-    } else if (passwordController.text.isValidPassword) {
-      setState(() {
-        validatePassword = false;
-      });
-    } else {
-      setState(() {
-        validatePassword = false;
-      });
-    }
-  }
 
   @override
   void initState() {
@@ -100,8 +59,8 @@ class _LoginBodyState extends State<LoginBody> {
               textEditingController: emailController,
               keyboardType: TextInputType.emailAddress,
               obscureText: false,
-              hintText: "Email",
-              labelText: "Email",
+              hintText: "email".tr(context),
+              labelText: "email".tr(context),
               onEditingComplete: () async {
                 FocusScope.of(context).unfocus();
               },
@@ -116,8 +75,8 @@ class _LoginBodyState extends State<LoginBody> {
               textEditingController: passwordController,
               keyboardType: TextInputType.visiblePassword,
               obscureText: !showPassword,
-              hintText: "Password",
-              labelText: "Password",
+              hintText: "password".tr(context),
+              labelText: "password".tr(context),
               onEditingComplete: () async {
                 FocusScope.of(context).unfocus();
               },
@@ -151,14 +110,7 @@ class _LoginBodyState extends State<LoginBody> {
             InkWell(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const ForgetPassword(),
-                //   ),
-                // );
-              },
+              onTap: () {},
               child: const Text(
                 "Forgot Password?",
                 overflow: TextOverflow.ellipsis,
@@ -171,7 +123,7 @@ class _LoginBodyState extends State<LoginBody> {
                 padding: const EdgeInsets.all(0),
                 screenHeight: screenHeight,
                 screenWidth: screenWidth,
-                title: "Login",
+                title: "log_in".tr(context),
                 onPressed: emailController.text.isNotEmpty &&
                         passwordController.text.isNotEmpty
                     ? () {}
@@ -182,7 +134,7 @@ class _LoginBodyState extends State<LoginBody> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "New to Animeniac? ",
+                      text: "new".tr(context),
                       style:
                           Theme.of(context).textTheme.headlineMedium!.copyWith(
                                 fontWeight: FontWeight.w400,
@@ -195,12 +147,12 @@ class _LoginBodyState extends State<LoginBody> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignUpPage(),
+                            builder: (context) => const SignUpView(),
                           ),
                         );
                       },
-                      child: const Text(
-                        "Sign Up",
+                      child: Text(
+                        "sign_up".tr(context),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ))
@@ -213,5 +165,50 @@ class _LoginBodyState extends State<LoginBody> {
         ),
       ),
     );
+  }
+
+  //functions
+  void emailCheck() {
+    if (emailController.text.isEmpty) {
+      setState(() {
+        emailErrorText = "enter_email".tr(context);
+        validateEmail = true;
+      });
+    } else if (!emailController.text.isValidEmail) {
+      setState(() {
+        emailErrorText = "enter_valid_email".tr(context);
+        validateEmail = true;
+      });
+    } else if (emailController.text.isValidEmail) {
+      setState(() {
+        validateEmail = false;
+        emailErrorText = "";
+      });
+    } else {
+      setState(() {
+        validateEmail = false;
+        emailErrorText = "";
+      });
+    }
+  }
+
+  void passwordCheck() {
+    if (passwordController.text.isEmpty) {
+      setState(() {
+        validatePassword = true;
+      });
+    } else if (!passwordController.text.isValidPassword) {
+      setState(() {
+        validatePassword = true;
+      });
+    } else if (passwordController.text.isValidPassword) {
+      setState(() {
+        validatePassword = false;
+      });
+    } else {
+      setState(() {
+        validatePassword = false;
+      });
+    }
   }
 }
