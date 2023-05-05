@@ -1,17 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/global_widgets/loading_indicator.dart';
-import '../../../../core/global_widgets/loading_widget.dart';
-import '../../../../core/global_widgets/message_display_widget.dart';
-
-import '../../../../injection_container.dart';
-import '../../data/models/top_manga_model.dart';
-import '../manga_bloc/mangas_bloc.dart';
-import '../widgets/manga_custom_slider.dart';
-import '../widgets/manga_slider_card.dart';
-import '../widgets/manga_vertical_listview.dart';
-import '../widgets/manga_vertical_listview_card.dart';
+import 'top_manga_imports.dart';
 
 class TopMangaView extends StatelessWidget {
   const TopMangaView({super.key});
@@ -21,7 +8,10 @@ class TopMangaView extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<MangasBloc>()..add(GetTopMangasEvent()),
       child: Scaffold(
-        // appBar: const TopBar(title: 's'),
+        appBar: const TopBar(
+          title: 'assets/images/Animeniac.png',
+          page: 'Manga',
+        ),
         body: BlocBuilder<MangasBloc, MangaState>(
           builder: (context, state) {
             if (state is LoadingMangaState) {

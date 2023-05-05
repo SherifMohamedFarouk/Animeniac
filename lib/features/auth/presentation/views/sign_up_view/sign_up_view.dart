@@ -218,9 +218,10 @@ class _SignUpViewState extends State<SignUpView> {
               BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthLoading) {
-                    context.loaderOverlay.show(widget: ProcessingOverLay());
+                    context.loaderOverlay
+                        .show(widget: const ProcessingOverLay());
                   } else if (state is AuthSuccess) {
-                    Navigator.pop(context);
+                    CustomNavigator.pop();
                     context.loaderOverlay.hide();
                   } else if (state is AuthFailure) {
                     context.loaderOverlay.hide();

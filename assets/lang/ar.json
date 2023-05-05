@@ -15,5 +15,9 @@
     "enter_valid_pw": " الرجاء إدخال كلمة مرور صالحة ",
     "enter_confirm_pw": " الرجاء إدخال تأكيد كلمة المرور ",
     "emty_field": " الحقل فارغ ",
-    "enter_valid_name": " رجاء ادخل اسما صحيحا "
+    "enter_valid_name": " رجاء ادخل اسما صحيحا ",
+    "light_theme": " فاتح ",
+    "dark_theme": " داكن ",
+    "change_lang": " تغيير اللغة ",
+    "log_out": " تسجيل الخروج "
 }

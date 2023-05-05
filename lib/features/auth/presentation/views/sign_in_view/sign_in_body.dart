@@ -1,5 +1,11 @@
+import 'package:animeniac/core/navigation/custom_navigation.dart';
+import 'package:animeniac/core/navigation/routes.dart';
 import 'package:animeniac/localization/app_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
+import '../../../../../core/global_widgets/lottie_animations/naruto_loader.dart';
+import '../../cubit/auth_cubit.dart';
 import 'sign_in_imports.dart';
 
 class SignInBody extends StatefulWidget {
@@ -119,15 +125,29 @@ class _SignInBodyState extends State<SignInBody> {
             SizedBox(
               height: screenHeight * 0.05,
             ),
-            LoginButton(
-                padding: const EdgeInsets.all(0),
-                screenHeight: screenHeight,
-                screenWidth: screenWidth,
-                title: "log_in".tr(context),
-                onPressed: emailController.text.isNotEmpty &&
-                        passwordController.text.isNotEmpty
-                    ? () {}
-                    : null),
+            BlocListener<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthLoading) {
+                  context.loaderOverlay.show(widget: const ProcessingOverLay());
+                } else if (state is AuthSuccess) {
+                  CustomNavigator.push(Routes.WATCH_LIST, clean: true);
+                  context.loaderOverlay.hide();
+                } else if (state is AuthFailure) {
+                  context.loaderOverlay.hide();
+                }
+              },
+              child: LoginButton(
+                  padding: const EdgeInsets.all(0),
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  title: "log_in".tr(context),
+                  onPressed: emailController.text.isNotEmpty &&
+                          passwordController.text.isNotEmpty
+                      ? () {
+                          signIn();
+                        }
+                      : null),
+            ),
             SizedBox(height: screenHeight * 0.032),
             Center(
               child: RichText(
@@ -168,6 +188,15 @@ class _SignInBodyState extends State<SignInBody> {
   }
 
   //functions
+
+  signIn() {
+    BlocProvider.of<AuthCubit>(context).signIn(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  }
+
+  //validation functions
   void emailCheck() {
     if (emailController.text.isEmpty) {
       setState(() {

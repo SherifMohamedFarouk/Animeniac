@@ -1,16 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/global_widgets/loading_indicator.dart';
-import '../../../../core/global_widgets/loading_widget.dart';
-import '../../../../core/global_widgets/message_display_widget.dart';
-import '../../../../injection_container.dart';
-import '../../data/models/top_anime_model.dart';
-import '../anime_bloc/animes_bloc.dart';
-import '../widgets/anime_custom_slider.dart';
-import '../widgets/anime_slider_card.dart';
-import '../widgets/anime_vertical_listview.dart';
-import '../widgets/anime_vertical_listview_card.dart';
+import 'top_anime_imports.dart';
 
 class TopAnimeView extends StatelessWidget {
   const TopAnimeView({super.key});
@@ -20,7 +8,10 @@ class TopAnimeView extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<AnimesBloc>()..add(GetTopAnimesEvent()),
       child: Scaffold(
-        // appBar: const TopBar(title: 's'),
+        appBar: const TopBar(
+          title: 'assets/images/Animeniac.png',
+          page: 'Anime',
+        ),
         body: BlocBuilder<AnimesBloc, AnimeState>(
           builder: (context, state) {
             if (state is LoadingAnimeState) {

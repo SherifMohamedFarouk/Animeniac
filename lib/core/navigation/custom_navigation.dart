@@ -1,3 +1,4 @@
+import 'package:animeniac/features/watch_list/watch_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/views/sign_in_view/sign_in_view.dart';
@@ -23,6 +24,8 @@ abstract class CustomNavigator {
         return MaterialPageRoute(builder: (_) => const SignInView());
       case Routes.SIGN_UP:
         return MaterialPageRoute(builder: (_) => const SignUpView());
+      case Routes.WATCH_LIST:
+        return MaterialPageRoute(builder: (_) => const WatchListView());
       default:
         return MaterialPageRoute(builder: (_) => const SplashView());
     }

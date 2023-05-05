@@ -15,5 +15,9 @@
     "enter_valid_pw": " Please enter a valid password ",
     "enter_confirm_pw": " Please enter a confirm password ",
     "empty_field": " field is empty ",
-    "enter_valid_name": " Please enter a valid name "
+    "enter_valid_name": " Please enter a valid name ",
+    "light_theme": " Light Mode  ",
+    "dark_theme": " Dark Mode ",
+    "change_lang": " Change Language  ",
+    "log_out": " Log Out  "
 }

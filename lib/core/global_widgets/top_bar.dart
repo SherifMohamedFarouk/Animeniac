@@ -5,9 +5,11 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({
     super.key,
     required this.title,
+    required this.page,
   });
 
   final String title;
+  final String page;
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -16,11 +18,17 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: Image.asset(
-        title,
-        fit: BoxFit.cover,
-        height: 5.h,
-        width: 50.w,
+      title: ListTile(
+        trailing: Text(
+          page,
+          style: TextStyle(fontSize: 20),
+        ),
+        leading: Image.asset(
+          title,
+          fit: BoxFit.cover,
+          height: 5.h,
+          width: 50.w,
+        ),
       ),
       // leading: IconButton(
       //   onPressed: () {},

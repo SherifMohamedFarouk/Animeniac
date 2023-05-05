@@ -75,7 +75,6 @@ class _CustomTextFieldForAuthState extends State<CustomTextFieldForAuth> {
       obscureText: widget.obscureText!,
       keyboardType: widget.keyboardType,
       cursorHeight: 22,
-      cursorColor: Colors.black,
       readOnly: widget.readOnly!,
       onEditingComplete: widget.onEditingComplete,
       style: widget.textStyle,
