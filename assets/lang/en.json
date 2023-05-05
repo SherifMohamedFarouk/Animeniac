@@ -1,0 +1,19 @@
+{
+    "email": " Email ",
+    "password": " Password ",
+    "log_in": " Login ",
+    "new": " New to Animeniac ? ",
+    "sign_up": "  Sign Up  ",
+    "name": " Name ",
+    "enter_name": " Enter Name ",
+    "pw_text": " Password should contain upper case, lower case, number, symbol, 8 characters at least ",
+    "confrim_password": " Confirm Password ",
+    "have_acc": " Have an Account ? ",
+    "enter_email": " Please enter an email ",
+    "enter_valid_email": " Please enter a valid email ",
+    "enter_pw": " Please enter a password ",
+    "enter_valid_pw": " Please enter a valid password ",
+    "enter_confirm_pw": " Please enter a confirm password ",
+    "empty_field": " field is empty ",
+    "enter_valid_name": " Please enter a valid name "
+}
