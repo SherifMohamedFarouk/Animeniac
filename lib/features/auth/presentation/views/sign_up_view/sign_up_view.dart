@@ -1,4 +1,7 @@
+import 'package:animeniac/core/global_widgets/lottie_animations/naruto_loader.dart';
+import 'package:animeniac/core/navigation/custom_navigation.dart';
 import 'package:animeniac/localization/app_localizations.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import './sign_up_imports.dart';
 
@@ -212,20 +215,32 @@ class _SignUpViewState extends State<SignUpView> {
               SizedBox(
                 height: screenHeight * 0.06,
               ),
-              LoginButton(
-                padding: const EdgeInsets.all(0),
-                screenHeight: screenHeight,
-                screenWidth: screenWidth,
-                title: "sign_up".tr(context),
-                onPressed: !(emailController.text.isValidEmail &&
-                        passwordController.text.isValidPassword &&
-                        confirmPasswordController.text ==
-                            passwordController.text &&
-                        nameController.text.isNotEmpty)
-                    ? null
-                    : () {
-                        signUp();
-                      },
+              BlocListener<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthLoading) {
+                    context.loaderOverlay.show(widget: ProcessingOverLay());
+                  } else if (state is AuthSuccess) {
+                    Navigator.pop(context);
+                    context.loaderOverlay.hide();
+                  } else if (state is AuthFailure) {
+                    context.loaderOverlay.hide();
+                  }
+                },
+                child: LoginButton(
+                  padding: const EdgeInsets.all(0),
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  title: "sign_up".tr(context),
+                  onPressed: !(emailController.text.isValidEmail &&
+                          passwordController.text.isValidPassword &&
+                          confirmPasswordController.text ==
+                              passwordController.text &&
+                          nameController.text.isNotEmpty)
+                      ? null
+                      : () {
+                          signUp();
+                        },
+                ),
               ),
               SizedBox(height: screenHeight * 0.03),
               Padding(
@@ -257,7 +272,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  void signUp() {
+  signUp() {
     BlocProvider.of<AuthCubit>(context).signUp(
       email: emailController.text,
       name: nameController.text,

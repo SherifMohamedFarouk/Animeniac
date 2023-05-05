@@ -47,6 +47,7 @@ class ThemeColors {
 
   static final darkTheme = ThemeData(
       colorScheme: ColorScheme.fromSwatch(
+
         brightness: Brightness.dark,
       ).copyWith(onPrimary: darkTextColor, onSecondary: whiteColor),
       iconTheme: IconThemeData(color: darkIconColor),

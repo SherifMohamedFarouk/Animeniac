@@ -13,6 +13,7 @@ import 'core/theme/cubit/theme_cubit.dart';
 import 'injection_container.dart' as di;
 import 'localization/app_localizations.dart';
 import 'localization/lang_cubit/locale_cubit.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,30 +47,32 @@ class MyApp extends StatelessWidget {
         return BlocBuilder<LocaleCubit, ChangeLocaleState>(
             builder: (context, lstate) {
           return Sizer(builder: (context, orientation, deviceType) {
-            return MaterialApp(
-              locale: lstate.locale,
-              supportedLocales: const [Locale('en'), Locale('ar')],
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate
-              ],
-              localeResolutionCallback: (deviceLocale, supportedLocales) {
-                for (var locale in supportedLocales) {
-                  if (deviceLocale != null &&
-                      deviceLocale.languageCode == locale.languageCode) {
-                    return deviceLocale;
+            return GlobalLoaderOverlay(
+              child: MaterialApp(
+                locale: lstate.locale,
+                supportedLocales: const [Locale('en'), Locale('ar')],
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
+                ],
+                localeResolutionCallback: (deviceLocale, supportedLocales) {
+                  for (var locale in supportedLocales) {
+                    if (deviceLocale != null &&
+                        deviceLocale.languageCode == locale.languageCode) {
+                      return deviceLocale;
+                    }
                   }
-                }
 
-                return supportedLocales.first;
-              },
-              debugShowCheckedModeBanner: false,
-              title: 'Animeniac',
-              theme: AppTheme.themeData(state.isDarkThemeOn, context),
-              initialRoute: "/",
-              routes: {"/": (context) => const SplashView()},
+                  return supportedLocales.first;
+                },
+                debugShowCheckedModeBanner: false,
+                title: 'Animeniac',
+                theme: AppTheme.themeData(state.isDarkThemeOn, context),
+                initialRoute: "/",
+                routes: {"/": (context) => const SplashView()},
+              ),
             );
           });
         });
