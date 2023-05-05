@@ -65,6 +65,7 @@ class _SignInBodyState extends State<SignInBody> {
               textEditingController: emailController,
               keyboardType: TextInputType.emailAddress,
               obscureText: false,
+              textAlign: TextAlign.justify,
               hintText: "email".tr(context),
               labelText: "email".tr(context),
               onEditingComplete: () async {
@@ -81,6 +82,7 @@ class _SignInBodyState extends State<SignInBody> {
               textEditingController: passwordController,
               keyboardType: TextInputType.visiblePassword,
               obscureText: !showPassword,
+              textAlign: TextAlign.justify,
               hintText: "password".tr(context),
               labelText: "password".tr(context),
               onEditingComplete: () async {
@@ -117,8 +119,8 @@ class _SignInBodyState extends State<SignInBody> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {},
-              child: const Text(
-                "Forgot Password?",
+              child: Text(
+                "forgot_pw".tr(context),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -162,20 +164,21 @@ class _SignInBodyState extends State<SignInBody> {
                               ),
                     ),
                     WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
                         child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpView(),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignUpView(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "sign_up".tr(context),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        );
-                      },
-                      child: Text(
-                        "sign_up".tr(context),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ))
+                        ))
                   ],
                 ),
               ),

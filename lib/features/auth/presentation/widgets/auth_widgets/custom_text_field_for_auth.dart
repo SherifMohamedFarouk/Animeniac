@@ -111,7 +111,7 @@ class _CustomTextFieldForAuthState extends State<CustomTextFieldForAuth> {
               fontWeight: FontWeight.w400,
               fontSize: 14,
               height: 3.5,
-              color: !widget.validate! ? primaryColor : Color(0xffEB001B),
+              color: !widget.validate! ? secondaryColor : Color(0xffEB001B),
             ),
         labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w600,
