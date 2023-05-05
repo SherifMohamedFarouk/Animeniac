@@ -173,7 +173,7 @@ class _SignUpViewState extends State<SignUpView> {
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: !showConfirmPassword,
                   textAlign: TextAlign.justify,
-                  hintText: "confirm_password".tr(context),
+                  hintText: "confrim_password".tr(context),
                   labelText: "confrim_password".tr(context),
                   suffixIcon: !showConfirmPassword
                       ? IconButton(
