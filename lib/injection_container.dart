@@ -6,6 +6,8 @@ import 'package:animeniac/features/auth/domain/use_cases/sign_in_usecase.dart';
 import 'package:animeniac/features/auth/domain/use_cases/sign_out_usecase.dart';
 import 'package:animeniac/features/auth/domain/use_cases/sign_up_usecase.dart';
 import 'package:animeniac/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:animeniac/features/top_anime/domain/use_cases/get_anime_details.dart';
+import 'package:animeniac/features/top_anime/presentation/anime_details_bloc/anime_details_bloc.dart';
 import 'package:animeniac/features/top_manga/domain/use_cases/get_top_mangas.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

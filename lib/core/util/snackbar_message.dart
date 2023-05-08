@@ -6,7 +6,6 @@ class SnackBarMessage {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(
         message,
-        style: TextStyle(color: Colors.white),
       ),
       backgroundColor: Colors.green,
     ));
@@ -17,7 +16,6 @@ class SnackBarMessage {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(
         message,
-        style: TextStyle(color: Colors.white),
       ),
       backgroundColor: Colors.red,
     ));

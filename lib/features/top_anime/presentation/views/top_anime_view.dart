@@ -63,7 +63,7 @@ class TopAnimeWidget extends StatelessWidget {
                   itemCount: animes.data!.length + 1,
                   itemBuilder: (context, index) {
                     if (index < 5) {
-                      return SizedBox.shrink();
+                      return const SizedBox.shrink();
                     } else {
                       if (index < animes.data!.length) {
                         return AnimeVerticalListViewCard(

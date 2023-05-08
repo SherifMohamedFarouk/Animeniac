@@ -5,4 +5,5 @@ import '../../../../core/error/failures.dart';
 
 abstract class TopAnimeRepository {
   Future<Either<Failure, TopAnimeModel>> getTopAnimes();
+  Future<Either<Failure, TopAnimeModel>> getAnimeDetails(int animeId);
 }

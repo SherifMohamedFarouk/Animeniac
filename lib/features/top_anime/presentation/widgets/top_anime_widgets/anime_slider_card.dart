@@ -1,5 +1,8 @@
 import 'package:animeniac/core/color/colors.dart';
+import 'package:animeniac/core/navigation/custom_navigation.dart';
+import 'package:animeniac/core/navigation/routes.dart';
 import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
+import 'package:animeniac/features/top_anime/presentation/views/anime_details.dart';
 
 import 'package:flutter/material.dart';
 
@@ -22,7 +25,7 @@ class AnimeSliderCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        // navigateToDetailsView(context, media);
+        CustomNavigator.push(Routes.ANIME_DETAILS, arguments: animeData);
       },
       child: SafeArea(
         child: Stack(
@@ -48,12 +51,12 @@ class AnimeSliderCard extends StatelessWidget {
                       style: textTheme.titleMedium,
                     ),
                     Text(
-                      animeData.year.toString(),
+                      animeData.year != null ? animeData.year.toString() : '',
                       style: textTheme.bodyLarge,
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.amber,
                           size: 20,

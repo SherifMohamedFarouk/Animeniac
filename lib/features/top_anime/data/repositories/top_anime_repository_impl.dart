@@ -29,4 +29,10 @@ class TopAnimeRepositoryImpl implements TopAnimeRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, TopAnimeModel>> getAnimeDetails(int animeId) {
+    // TODO: implement getAnimeDetails
+    throw UnimplementedError();
+  }
 }

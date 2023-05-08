@@ -5,4 +5,5 @@ abstract class Routes {
   static const SIGN_UP = "SIGN_UP";
   static const SIGN_IN = "SIGN_IN";
   static const WATCH_LIST = "WATCH_LIST";
+  static const ANIME_DETAILS = "ANIME_DETAILS";
 }

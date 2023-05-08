@@ -1,7 +1,7 @@
 import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/global_widgets/image_with_shimmer.dart';
+import '../../../../../core/global_widgets/image_with_shimmer.dart';
 
 class AnimeVerticalListViewCard extends StatelessWidget {
   const AnimeVerticalListViewCard({

@@ -1,10 +1,10 @@
 import 'package:animeniac/core/color/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/global_widgets/image_with_shimmer.dart';
+import '../../../../../core/global_widgets/image_with_shimmer.dart';
 
-class AnimeSliderCardImage extends StatelessWidget {
-  const AnimeSliderCardImage({
+class SliderCardImage extends StatelessWidget {
+  const SliderCardImage({
     super.key,
     required this.imageUrl,
   });
@@ -20,11 +20,7 @@ class AnimeSliderCardImage extends StatelessWidget {
         return const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            blackColor,
-            blackColor,
-            Colors.transparent,
-          ],
+          colors: [blackColor, blackColor, Colors.transparent],
           stops: [0.3, 0.5, 1],
         ).createShader(
           Rect.fromLTRB(0, 0, rect.width, rect.height),

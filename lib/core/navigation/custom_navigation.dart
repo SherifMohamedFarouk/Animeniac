@@ -1,3 +1,5 @@
+import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
+import 'package:animeniac/features/top_anime/presentation/views/anime_details.dart';
 import 'package:animeniac/features/watch_list/watch_list.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +28,12 @@ abstract class CustomNavigator {
         return MaterialPageRoute(builder: (_) => const SignUpView());
       case Routes.WATCH_LIST:
         return MaterialPageRoute(builder: (_) => const WatchListView());
+      case Routes.ANIME_DETAILS:
+        AnimeData animeDetails = arguments as AnimeData;
+        return MaterialPageRoute(
+            builder: (_) => AnimeDetailsView(
+                  animeDetails: animeDetails,
+                ));
       default:
         return MaterialPageRoute(builder: (_) => const SplashView());
     }
