@@ -6,8 +6,6 @@ import '../../domain/repositories/top_manga_repository.dart';
 import '../data_sources/top_manga_remote_data_source.dart';
 import '../models/top_manga_model.dart';
 
-// typedef Future<Unit> DeleteOrUpdateOrAddPost();
-
 class TopMangaRepositoryImpl implements TopMangaRepository {
   final TopMangaRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;

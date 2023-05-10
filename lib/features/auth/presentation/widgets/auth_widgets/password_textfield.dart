@@ -44,18 +44,18 @@ class _PasswordTextfieldState extends State<PasswordTextfield> {
         onEditingComplete: widget.onEditingComplete,
         onTap: widget.onTap,
         decoration: InputDecoration(
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: widget.label,
             hintText: widget.hint,
-            hintStyle: TextStyle(),
+            hintStyle: const TextStyle(),
             suffixIcon: IconButton(
               icon: _showPassword
-                  ? Icon(FeatherIcons.eyeOff)
-                  : Icon(FeatherIcons.eye),
+                  ? const Icon(FeatherIcons.eyeOff)
+                  : const Icon(FeatherIcons.eye),
               onPressed: _toggle,
             )),
         obscureText: _showPassword,

@@ -1,8 +1,7 @@
-import 'package:animeniac/core/color/colors.dart';
-import 'package:animeniac/core/navigation/custom_navigation.dart';
-import 'package:animeniac/core/navigation/routes.dart';
-import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
-import 'package:animeniac/features/top_anime/presentation/views/anime_details.dart';
+import '../../../../../core/color/colors.dart';
+import '../../../../../core/navigation/custom_navigation.dart';
+import '../../../../../core/navigation/routes.dart';
+import '../../../data/models/classes/anime_data.dart';
 
 import 'package:flutter/material.dart';
 

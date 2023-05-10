@@ -1,9 +1,10 @@
-import 'package:animeniac/core/color/colors.dart';
-import 'package:animeniac/features/top_manga/data/models/classes/manga_data.dart';
+import '../../../../../core/color/colors.dart';
+import '../../../data/models/classes/manga_data.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../data/models/top_manga_model.dart';
+import '../../../../../core/navigation/custom_navigation.dart';
+import '../../../../../core/navigation/routes.dart';
 import 'manga_slider_card_image.dart';
 
 class MangaSliderCard extends StatelessWidget {
@@ -22,7 +23,7 @@ class MangaSliderCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        // navigateToDetailsView(context, media);
+        CustomNavigator.push(Routes.MANGA_DETAILS, arguments: mangaData);
       },
       child: SafeArea(
         child: Stack(
@@ -53,9 +54,13 @@ class MangaSliderCard extends StatelessWidget {
                       mangaData.published!.prop!.from!.year.toString(),
                       style: textTheme.bodyLarge,
                     ),
+                    Text(
+                      'Status : ${mangaData.status} ,',
+                      style: textTheme.bodyMedium,
+                    ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.amber,
                           size: 20,

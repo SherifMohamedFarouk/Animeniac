@@ -12,8 +12,6 @@ class SettingOptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,12 +22,12 @@ class SettingOptionWidget extends StatelessWidget {
           children: [
             Text(
               title!,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
                   ),
             ),
-            Spacer(),
+            const Spacer(),
             iconWidget!,
           ],
         ),

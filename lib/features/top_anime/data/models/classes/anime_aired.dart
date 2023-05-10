@@ -1,4 +1,4 @@
-import 'package:animeniac/features/top_anime/data/models/top_anime_model.dart';
+import '../top_anime_model.dart';
 
 class Aired {
   String? from;

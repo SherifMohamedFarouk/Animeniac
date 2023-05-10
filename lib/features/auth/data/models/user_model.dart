@@ -1,7 +1,7 @@
-import 'package:animeniac/features/auth/domain/entites/user_data.dart';
+import '../../domain/entites/user_data.dart';
 
 class UserModel extends UserData {
-  UserModel({
+  const UserModel({
     name = "",
     email = "",
     uid = "",

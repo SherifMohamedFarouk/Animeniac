@@ -14,8 +14,6 @@ class _WatchListViewState extends State<WatchListView> {
   FirebaseAuth myId = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('my watchList ${myId.currentUser!.uid}'),
-    );
+    return Text('my watchList ${myId.currentUser!.uid}');
   }
 }

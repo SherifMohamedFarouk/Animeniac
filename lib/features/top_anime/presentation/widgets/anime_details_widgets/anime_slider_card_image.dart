@@ -1,10 +1,10 @@
-import 'package:animeniac/core/color/colors.dart';
+import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 
-class SliderCardImage extends StatelessWidget {
-  const SliderCardImage({
+class AnimeSliderCardImage extends StatelessWidget {
+  const AnimeSliderCardImage({
     super.key,
     required this.imageUrl,
   });

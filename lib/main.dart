@@ -1,8 +1,8 @@
+import 'package:loader_overlay/loader_overlay.dart';
+
 import 'injection_container.dart' as di;
 import 'localization/app_localizations.dart';
 import 'localization/lang_cubit/locale_cubit.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-
 import 'main_imports.dart';
 
 void main() async {

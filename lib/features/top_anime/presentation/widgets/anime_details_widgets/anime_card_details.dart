@@ -1,5 +1,6 @@
-import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
 import 'package:flutter/material.dart';
+
+import '../../../data/models/classes/anime_data.dart';
 
 class AnimeCardDetails extends StatelessWidget {
   const AnimeCardDetails({

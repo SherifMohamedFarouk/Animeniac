@@ -1,17 +1,16 @@
-import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
-import 'package:animeniac/features/top_anime/presentation/views/anime_details.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
+import '../../../data/models/classes/manga_data.dart';
 
-class SectionListViewCard extends StatelessWidget {
-  const SectionListViewCard({
+class MangaSectionListViewCard extends StatelessWidget {
+  const MangaSectionListViewCard({
     super.key,
-    required this.animeDetails,
+    required this.mangaDetails,
   });
-  final AnimeData animeDetails;
+  final MangaData mangaDetails;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -22,13 +21,13 @@ class SectionListViewCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              CustomNavigator.push(Routes.ANIME_DETAILS,
-                  arguments: animeDetails);
+              CustomNavigator.push(Routes.MANGA_DETAILS,
+                  arguments: mangaDetails);
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: ImageWithShimmer(
-                imageUrl: animeDetails.images!.jpg!.largeImageUrl.toString(),
+                imageUrl: mangaDetails.images!.jpg!.largeImageUrl.toString(),
                 width: double.infinity,
                 height: 175,
               ),
@@ -38,7 +37,7 @@ class SectionListViewCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                animeDetails.titleEnglish!,
+                mangaDetails.titleEnglish ?? mangaDetails.title!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: textTheme.bodyMedium,
@@ -51,7 +50,7 @@ class SectionListViewCard extends StatelessWidget {
                     size: 18,
                   ),
                   Text(
-                    '${animeDetails.score}/10',
+                    '${mangaDetails.score}/10',
                     style: textTheme.bodySmall,
                   ),
                 ],

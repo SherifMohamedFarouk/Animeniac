@@ -1,3 +1,8 @@
+import '../../../../core/navigation/custom_navigation.dart';
+import '../../../../core/navigation/routes.dart';
+import '../widgets/anime_details_widgets/anime_section_header.dart';
+import '../widgets/anime_details_widgets/anime_section_listview.dart';
+import '../widgets/anime_details_widgets/anime_section_listview_card.dart';
 import 'top_anime_imports.dart';
 
 class TopAnimeView extends StatelessWidget {
@@ -59,23 +64,22 @@ class TopAnimeWidget extends StatelessWidget {
                     );
                   },
                 ),
-                AnimeVerticalListView(
-                  itemCount: animes.data!.length + 1,
+                AnimeSectionHeader(
+                  title: 'Top Animes',
+                  onSeeAllTap: () {
+                    CustomNavigator.push(Routes.ALL_TOP_ANIMES);
+                  },
+                ),
+                AnimeSectionListView(
+                  height: 240,
+                  itemCount: animes.data!.length,
                   itemBuilder: (context, index) {
                     if (index < 5) {
                       return const SizedBox.shrink();
                     } else {
-                      if (index < animes.data!.length) {
-                        return AnimeVerticalListViewCard(
-                          animeData: animes.data![index],
-                        );
-                      } else {
-                        return const LoadingIndicator();
-                      }
+                      return AnimeSectionListViewCard(
+                          animeDetails: animes.data![index]);
                     }
-                  },
-                  addEvent: () {
-                    context.read<AnimesBloc>().add(FetchMoreAnimeEvent());
                   },
                 ),
               ],

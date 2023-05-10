@@ -1,4 +1,4 @@
-import './sign_in_imports.dart';
+import 'sign_in_imports.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({

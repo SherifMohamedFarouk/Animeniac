@@ -1,22 +1,21 @@
-import 'package:animeniac/core/color/colors.dart';
-import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
+import '../../../../../core/color/colors.dart';
 
-import 'package:animeniac/features/top_anime/presentation/views/top_anime_imports.dart';
 import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-import 'slider_card_image.dart';
+import '../../../data/models/classes/manga_data.dart';
+import '../top_manga_widgets/manga_slider_card_image.dart';
 
-class DetailsCard extends StatelessWidget {
-  const DetailsCard({
+class MangaDetailsCard extends StatelessWidget {
+  const MangaDetailsCard({
     required this.detailsWidget,
     super.key,
-    required this.animeDetails,
+    required this.mangaDetails,
   });
 
   final Widget detailsWidget;
-  final AnimeData animeDetails;
+  final MangaData mangaDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,8 @@ class DetailsCard extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SliderCardImage(imageUrl: animeDetails.images!.jpg!.largeImageUrl!),
+          MangaSliderCardImage(
+              imageUrl: mangaDetails.images!.jpg!.largeImageUrl!),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SizedBox(
@@ -41,7 +41,7 @@ class DetailsCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            animeDetails.titleEnglish!,
+                            mangaDetails.titleEnglish ?? mangaDetails.title!,
                             maxLines: 2,
                             style: textTheme.titleMedium,
                           ),
@@ -55,11 +55,11 @@ class DetailsCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'Rating : ${animeDetails.rating} ',
+                                'Status : ${mangaDetails.status} ,',
                                 style: textTheme.bodyMedium,
                               ),
                               Text(
-                                'Rank : ${animeDetails.rank!.toString()}',
+                                'Rank : ${mangaDetails.rank!.toString()}',
                                 style: textTheme.bodySmall,
                               )
                             ],
@@ -67,10 +67,10 @@ class DetailsCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    if (animeDetails.trailer!.url != null) ...[
+                    if (mangaDetails.url != null) ...[
                       InkWell(
                         onTap: () async {
-                          final url = Uri.parse(animeDetails.trailer!.url!);
+                          final url = Uri.parse(mangaDetails.url!);
                           if (!await launchUrl(url)) {
                             throw Exception('Could not launch $url');
                           }
@@ -83,7 +83,7 @@ class DetailsCard extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.play_arrow_rounded,
+                            Icons.menu_book_sharp,
                           ),
                         ),
                       ),

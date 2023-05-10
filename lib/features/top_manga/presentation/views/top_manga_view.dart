@@ -1,3 +1,8 @@
+import '../../../../core/navigation/custom_navigation.dart';
+import '../../../../core/navigation/routes.dart';
+import '../widgets/manga_details_widgets/manga_section_header.dart';
+import '../widgets/manga_details_widgets/manga_section_listview.dart';
+import '../widgets/manga_details_widgets/manga_section_listview_card.dart';
 import 'top_manga_imports.dart';
 
 class TopMangaView extends StatelessWidget {
@@ -59,23 +64,22 @@ class TopMangaWidget extends StatelessWidget {
                     );
                   },
                 ),
-                MangaVerticalListView(
-                  itemCount: mangas.data!.length + 1,
+                MangaSectionHeader(
+                  title: 'Top Mangas',
+                  onSeeAllTap: () {
+                    CustomNavigator.push(Routes.ALL_TOP_MANGAS);
+                  },
+                ),
+                MangaSectionListView(
+                  height: 240,
+                  itemCount: mangas.data!.length,
                   itemBuilder: (context, index) {
                     if (index < 5) {
                       return const SizedBox.shrink();
                     } else {
-                      if (index < mangas.data!.length) {
-                        return MangaVerticalListViewCard(
-                          mangaData: mangas.data![index],
-                        );
-                      } else {
-                        return const LoadingIndicator();
-                      }
+                      return MangaSectionListViewCard(
+                          mangaDetails: mangas.data![index]);
                     }
-                  },
-                  addEvent: () {
-                    context.read<MangasBloc>().add(FetchMoreMangaEvent());
                   },
                 ),
               ],

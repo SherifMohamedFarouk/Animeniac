@@ -1,10 +1,11 @@
+import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
-class OverviewSection extends StatelessWidget {
+class AnimeOverviewSection extends StatelessWidget {
   final String overview;
 
-  const OverviewSection({
+  const AnimeOverviewSection({
     super.key,
     required this.overview,
   });
@@ -23,11 +24,11 @@ class OverviewSection extends StatelessWidget {
         moreStyle: Theme.of(context)
             .textTheme
             .bodyLarge!
-            .copyWith(fontWeight: FontWeight.w600),
+            .copyWith(fontWeight: FontWeight.w600, color: primaryColor),
         lessStyle: Theme.of(context)
             .textTheme
             .bodyLarge!
-            .copyWith(fontWeight: FontWeight.w600),
+            .copyWith(fontWeight: FontWeight.w600, color: primaryColor),
       ),
     );
   }

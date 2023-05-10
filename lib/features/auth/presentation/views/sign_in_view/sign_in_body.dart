@@ -1,11 +1,3 @@
-import 'package:animeniac/core/navigation/custom_navigation.dart';
-import 'package:animeniac/core/navigation/routes.dart';
-import 'package:animeniac/localization/app_localizations.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-
-import '../../../../../core/global_widgets/lottie_animations/naruto_loader.dart';
-import '../../cubit/auth_cubit.dart';
 import 'sign_in_imports.dart';
 
 class SignInBody extends StatefulWidget {
@@ -132,7 +124,7 @@ class _SignInBodyState extends State<SignInBody> {
                 if (state is AuthLoading) {
                   context.loaderOverlay.show(widget: const ProcessingOverLay());
                 } else if (state is AuthSuccess) {
-                  CustomNavigator.push(Routes.WATCH_LIST, clean: true);
+                  CustomNavigator.push(Routes.WATCH_LIST);
                   context.loaderOverlay.hide();
                 } else if (state is AuthFailure) {
                   context.loaderOverlay.hide();

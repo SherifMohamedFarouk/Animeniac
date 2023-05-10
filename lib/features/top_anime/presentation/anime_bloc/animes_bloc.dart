@@ -1,6 +1,6 @@
-import 'package:animeniac/core/error/failures.dart';
-import 'package:animeniac/core/strings/failures.dart';
-import 'package:animeniac/features/top_anime/data/models/top_anime_model.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/strings/failures.dart';
+import '../../data/models/top_anime_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';

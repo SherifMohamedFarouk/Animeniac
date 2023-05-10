@@ -1,4 +1,4 @@
-import 'package:animeniac/core/color/colors.dart';
+import '../color/colors.dart';
 import 'package:flutter/material.dart';
 
 class LoadingIndicator extends StatelessWidget {

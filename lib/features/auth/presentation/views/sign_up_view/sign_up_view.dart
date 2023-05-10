@@ -1,9 +1,4 @@
-import 'package:animeniac/core/global_widgets/lottie_animations/naruto_loader.dart';
-import 'package:animeniac/core/navigation/custom_navigation.dart';
-import 'package:animeniac/localization/app_localizations.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-
-import './sign_up_imports.dart';
+import 'sign_up_imports.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);

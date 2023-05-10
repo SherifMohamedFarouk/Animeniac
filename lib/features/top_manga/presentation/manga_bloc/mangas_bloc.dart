@@ -1,11 +1,9 @@
-import 'package:animeniac/core/error/failures.dart';
-import 'package:animeniac/core/strings/failures.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/error/failures.dart';
+import '../../../../core/strings/failures.dart';
 import '../../data/models/top_manga_model.dart';
 import '../../domain/use_cases/get_top_mangas.dart';
 
@@ -31,7 +29,6 @@ class MangasBloc extends Bloc<MangasEvent, MangaState> {
     return either.fold(
         (failure) => ErrorMangasState(message: _mapFailureTOMessage(failure)),
         (mangas) {
-      print('this is ${mangas.data![0].titleEnglish}');
       return LoadedMangaState(mangas: mangas);
     });
   }

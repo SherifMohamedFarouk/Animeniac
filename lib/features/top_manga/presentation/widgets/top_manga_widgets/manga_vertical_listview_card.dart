@@ -1,8 +1,9 @@
-import 'package:animeniac/features/top_manga/data/models/classes/manga_data.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/global_widgets/image_with_shimmer.dart';
-import '../../data/models/top_manga_model.dart';
+import '../../../../../core/global_widgets/image_with_shimmer.dart';
+import '../../../../../core/navigation/custom_navigation.dart';
+import '../../../../../core/navigation/routes.dart';
+import '../../../data/models/classes/manga_data.dart';
 
 class MangaVerticalListViewCard extends StatelessWidget {
   const MangaVerticalListViewCard({
@@ -17,7 +18,7 @@ class MangaVerticalListViewCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: () {
-        // navigateToDetailsView(context, media);
+        CustomNavigator.push(Routes.MANGA_DETAILS, arguments: mangaData);
       },
       child: Container(
         height: 175,
@@ -83,6 +84,17 @@ class MangaVerticalListViewCard extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 14),
                           child: Text(
                             'Chapters: ${mangaData.chapters.toString()}',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: textTheme.bodyLarge,
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                  mangaData.volumes != null
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 14),
+                          child: Text(
+                            'Volumes: ${mangaData.volumes.toString()}',
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: textTheme.bodyLarge,

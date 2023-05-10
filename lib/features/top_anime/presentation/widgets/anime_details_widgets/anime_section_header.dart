@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SectionHeader extends StatelessWidget {
+class AnimeSectionHeader extends StatelessWidget {
   final String title;
   final Function() onSeeAllTap;
 
-  const SectionHeader({
+  const AnimeSectionHeader({
     super.key,
     required this.title,
     required this.onSeeAllTap,

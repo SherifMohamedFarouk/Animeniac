@@ -1,7 +1,9 @@
-import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
+import '../../../data/models/classes/anime_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
+import '../../../../../core/navigation/custom_navigation.dart';
+import '../../../../../core/navigation/routes.dart';
 
 class AnimeVerticalListViewCard extends StatelessWidget {
   const AnimeVerticalListViewCard({
@@ -16,7 +18,7 @@ class AnimeVerticalListViewCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: () {
-        // navigateToDetailsView(context, media);
+        CustomNavigator.push(Routes.ANIME_DETAILS, arguments: animeData);
       },
       child: Container(
         height: 175,
@@ -64,7 +66,7 @@ class AnimeVerticalListViewCard extends StatelessWidget {
                                 style: textTheme.bodyLarge,
                               ),
                             )
-                          : SizedBox.shrink(),
+                          : const SizedBox.shrink(),
                       const Icon(
                         Icons.star_rate_rounded,
                         color: Colors.amber,

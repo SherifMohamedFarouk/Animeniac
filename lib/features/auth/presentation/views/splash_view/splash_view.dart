@@ -1,4 +1,4 @@
-import 'package:animeniac/features/nav_screen/nav_bar_screen.dart';
+import '../../../../nav_screen/nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {

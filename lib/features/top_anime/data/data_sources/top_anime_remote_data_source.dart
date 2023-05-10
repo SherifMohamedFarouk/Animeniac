@@ -1,11 +1,10 @@
-import 'package:animeniac/core/util/constants.dart';
-import 'package:animeniac/features/top_anime/data/models/top_anime_model.dart';
-import 'package:dartz/dartz.dart';
 import 'dart:convert';
 
-import '../../../../core/error/exception.dart';
-
 import 'package:http/http.dart' as http;
+
+import '../../../../core/error/exception.dart';
+import '../../../../core/util/constants.dart';
+import '../models/top_anime_model.dart';
 
 abstract class TopAnimeRemoteDataSource {
   Future<TopAnimeModel> getTopAnimes();

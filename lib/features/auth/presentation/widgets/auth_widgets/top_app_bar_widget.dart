@@ -15,8 +15,6 @@ class AppBarWidget extends StatefulWidget {
 class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
     return AppBar(
       backgroundColor: Colors.transparent,
       // systemOverlayStyle: SystemUiOverlayStyle(),

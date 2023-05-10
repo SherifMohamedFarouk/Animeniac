@@ -1,14 +1,12 @@
+import '../entites/user_data.dart';
+import '../repositories/firebase_repository.dart';
 
-
-import 'package:animeniac/features/auth/domain/entites/user_data.dart';
-import 'package:animeniac/features/auth/domain/repositories/firebase_repository.dart';
-
-class SignInUseCase{
+class SignInUseCase {
   final FirebaseRepository repository;
 
   SignInUseCase({required this.repository});
 
-  Future<void> call(UserData user){
+  Future<void> call(UserData user) {
     return repository.signIn(user);
   }
 }

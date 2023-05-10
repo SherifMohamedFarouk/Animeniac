@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import '../../../../core/error/exception.dart';
-
 import 'package:http/http.dart' as http;
 
+import '../../../../core/error/exception.dart';
 import '../../../../core/util/constants.dart';
 import '../models/top_manga_model.dart';
 

@@ -21,7 +21,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
       title: ListTile(
         trailing: Text(
           page,
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
         leading: Image.asset(
           title,

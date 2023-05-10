@@ -1,4 +1,4 @@
-import 'package:animeniac/core/color/colors.dart';
+import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
@@ -14,7 +14,6 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: padding,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -9,16 +8,14 @@ class ProcessingOverLay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment:CrossAxisAlignment.center ,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Lottie.network(
-            'https://assets7.lottiefiles.com/packages/lf20_d8bmxmlo.json',height: 300),
+            'https://assets7.lottiefiles.com/packages/lf20_d8bmxmlo.json',
+            height: 300),
         Text(
           "Loading ..... ",
-          style: Theme.of(context)
-              .textTheme
-              .headline4!
-              .copyWith(
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
               fontSize: 16,
               height: 1.5,
               fontWeight: FontWeight.w700,

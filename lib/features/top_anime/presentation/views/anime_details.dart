@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/global_widgets/top_bar.dart';
-
 import '../../data/models/classes/anime_data.dart';
 import '../widgets/anime_details_widgets/anime_card_details.dart';
-import '../widgets/anime_details_widgets/details_card.dart';
-import '../widgets/anime_details_widgets/overview_section.dart';
-import '../widgets/anime_details_widgets/section_title.dart';
+import '../widgets/anime_details_widgets/anime_details_card.dart';
+import '../widgets/anime_details_widgets/anime_overview_section.dart';
+import '../widgets/anime_details_widgets/anime_section_title.dart';
 
 class AnimeDetailsView extends StatelessWidget {
   const AnimeDetailsView({
@@ -40,7 +39,7 @@ class AnimeDetailsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailsCard(
+          AnimeDetailsCard(
             animeDetails: animeDetails,
             detailsWidget: AnimeCardDetails(
               animeDetails: animeDetails,
@@ -60,8 +59,8 @@ class AnimeDetailsWidget extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(title: 'Story'),
-          OverviewSection(overview: overview),
+          const AnimeSectionTitle(title: 'Story'),
+          AnimeOverviewSection(overview: overview),
         ],
       );
     } else {
