@@ -1,4 +1,4 @@
-import 'package:animeniac/features/anime_search/data/models/anime_search_model.dart';
+import '../models/anime_search_model.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/exception.dart';

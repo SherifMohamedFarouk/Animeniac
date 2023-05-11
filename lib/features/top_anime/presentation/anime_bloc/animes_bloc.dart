@@ -1,10 +1,10 @@
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/error/failures.dart';
 import '../../../../core/strings/failures.dart';
 import '../../data/models/top_anime_model.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
-
 import '../../domain/use_cases/get_top_animes.dart';
 
 part 'animes_event.dart';

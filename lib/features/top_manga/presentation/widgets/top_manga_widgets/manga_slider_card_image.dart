@@ -1,6 +1,6 @@
-import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/color/colors.dart';
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 
 class MangaSliderCardImage extends StatelessWidget {

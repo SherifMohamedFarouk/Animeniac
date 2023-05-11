@@ -1,9 +1,7 @@
-import '../../../../../core/color/colors.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../../core/color/colors.dart';
 import '../../../data/models/classes/manga_data.dart';
 import '../top_manga_widgets/manga_slider_card_image.dart';
 

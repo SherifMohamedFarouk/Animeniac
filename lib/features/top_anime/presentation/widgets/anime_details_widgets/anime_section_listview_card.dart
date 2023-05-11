@@ -1,10 +1,9 @@
-import '../../../data/models/classes/anime_data.dart';
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
+import '../../../data/models/classes/anime_data.dart';
 
 class AnimeSectionListViewCard extends StatelessWidget {
   const AnimeSectionListViewCard({
@@ -38,7 +37,7 @@ class AnimeSectionListViewCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                animeDetails.titleEnglish!,
+                animeDetails.titleEnglish ?? animeDetails.title!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: textTheme.bodyMedium,

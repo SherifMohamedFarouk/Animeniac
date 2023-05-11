@@ -1,3 +1,4 @@
+import '../anime_search/presentation/views/search_view.dart';
 import 'nav_bar_imports.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -11,12 +12,14 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final List<Widget> _screens = [
     const TopAnimeView(),
     const TopMangaView(),
+    const AnimeSearchView(),
     const SignInView(),
     const SettingsScreen()
   ];
   final List<IconData> _icons = const [
     Icons.ondemand_video,
     Icons.menu_book_sharp,
+    Icons.search_sharp,
     Icons.person,
     Icons.settings
   ];

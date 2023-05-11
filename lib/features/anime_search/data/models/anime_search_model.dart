@@ -1,9 +1,9 @@
-import 'classes/anime_search_data.dart';
+import '../../../top_anime/data/models/classes/anime_data.dart';
 import 'classes/anime_search_images.dart';
 
 class AnimeSearchModel {
   Pagination? pagination;
-  List<AnimeSearchData>? data;
+  List<AnimeData>? data;
 
   AnimeSearchModel({this.pagination, this.data});
 
@@ -12,9 +12,9 @@ class AnimeSearchModel {
         ? Pagination.fromJson(json['pagination'])
         : null;
     if (json['data'] != null) {
-      data = <AnimeSearchData>[];
+      data = <AnimeData>[];
       json['data'].forEach((v) {
-        data!.add(AnimeSearchData.fromJson(v));
+        data!.add(AnimeData.fromJson(v));
       });
     }
   }

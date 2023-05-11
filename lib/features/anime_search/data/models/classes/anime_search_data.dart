@@ -20,7 +20,7 @@ class AnimeSearchData {
   Aired? aired;
   String? duration;
   String? rating;
-  double? score;
+  dynamic score;
   int? scoredBy;
   int? rank;
   int? popularity;

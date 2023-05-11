@@ -1,9 +1,9 @@
-import '../../../data/models/classes/anime_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
+import '../../../data/models/classes/anime_data.dart';
 
 class AnimeVerticalListViewCard extends StatelessWidget {
   const AnimeVerticalListViewCard({
@@ -49,7 +49,7 @@ class AnimeVerticalListViewCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6),
                     child: Text(
-                      animeData.titleEnglish!,
+                      animeData.titleEnglish ?? animeData.title!,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: textTheme.titleSmall,

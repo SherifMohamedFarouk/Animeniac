@@ -42,7 +42,7 @@ class AnimeDetailsCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            animeDetails.titleEnglish!,
+                            animeDetails.titleEnglish ?? animeDetails.title!,
                             maxLines: 2,
                             style: textTheme.titleMedium,
                           ),

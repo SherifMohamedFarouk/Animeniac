@@ -1,5 +1,6 @@
-import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/color/colors.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({

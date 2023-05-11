@@ -1,10 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../../../../core/color/colors.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
 import '../../../data/models/classes/anime_data.dart';
-
-import 'package:flutter/material.dart';
-
 import 'anime_slider_card_image.dart';
 
 class AnimeSliderCard extends StatelessWidget {
@@ -45,7 +44,7 @@ class AnimeSliderCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      animeData.titleEnglish!,
+                      animeData.titleEnglish ?? animeData.title!,
                       maxLines: 2,
                       style: textTheme.titleMedium,
                     ),

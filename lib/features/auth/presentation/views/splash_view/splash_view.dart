@@ -1,5 +1,6 @@
-import '../../../../nav_screen/nav_bar_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../nav_screen/nav_bar_screen.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);

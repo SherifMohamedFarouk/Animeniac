@@ -1,10 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entites/user_data.dart';
 import '../../domain/use_cases/sign_in_usecase.dart';
 import '../../domain/use_cases/sign_up_usecase.dart';
-
-import 'package:equatable/equatable.dart';
 
 part 'auth_state.dart';
 

@@ -1,10 +1,9 @@
-import '../../../../../core/color/colors.dart';
-import '../../../data/models/classes/manga_data.dart';
-
 import 'package:flutter/material.dart';
 
+import '../../../../../core/color/colors.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
+import '../../../data/models/classes/manga_data.dart';
 import 'manga_slider_card_image.dart';
 
 class MangaSliderCard extends StatelessWidget {

@@ -1,6 +1,7 @@
-import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../../../../core/color/colors.dart';
 
 class AnimeOverviewSection extends StatelessWidget {
   final String overview;

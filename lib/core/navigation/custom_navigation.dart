@@ -1,15 +1,15 @@
-import '../../features/top_anime/data/models/classes/anime_data.dart';
-import '../../features/top_anime/presentation/views/all_top_animes_view.dart';
-import '../../features/top_anime/presentation/views/anime_details.dart';
-import '../../features/watch_list/watch_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/views/sign_in_view/sign_in_view.dart';
 import '../../features/auth/presentation/views/sign_up_view/sign_up_view.dart';
 import '../../features/auth/presentation/views/splash_view/splash_view.dart';
+import '../../features/top_anime/data/models/classes/anime_data.dart';
+import '../../features/top_anime/presentation/views/all_top_animes_view.dart';
+import '../../features/top_anime/presentation/views/anime_details.dart';
 import '../../features/top_manga/data/models/classes/manga_data.dart';
 import '../../features/top_manga/presentation/views/all_top_manga_view.dart';
 import '../../features/top_manga/presentation/views/manga_details_view.dart';
+import '../../features/watch_list/watch_list.dart';
 import 'routes.dart';
 
 abstract class CustomNavigator {
