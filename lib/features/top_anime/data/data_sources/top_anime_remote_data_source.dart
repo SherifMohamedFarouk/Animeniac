@@ -7,7 +7,7 @@ import '../../../../core/util/constants.dart';
 import '../models/top_anime_model.dart';
 
 abstract class TopAnimeRemoteDataSource {
-  Future<TopAnimeModel> getTopAnimes();
+  Future<TopAnimeModel> getTopAnimes(pageIndex);
 }
 
 class TopAnimeRemoteDataSourceImpl implements TopAnimeRemoteDataSource {
@@ -15,9 +15,9 @@ class TopAnimeRemoteDataSourceImpl implements TopAnimeRemoteDataSource {
 
   TopAnimeRemoteDataSourceImpl({required this.client});
   @override
-  Future<TopAnimeModel> getTopAnimes() async {
+  Future<TopAnimeModel> getTopAnimes(pageIndex) async {
     final response = await client.get(
-      Uri.parse("$baseUrl/top/anime"),
+      Uri.parse("$baseUrl/top/anime?page=${pageIndex}"),
       headers: {"Content-Type": "application/json"},
     );
     if (response.statusCode == 200) {

@@ -12,24 +12,35 @@ part 'animes_state.dart';
 
 class AnimesBloc extends Bloc<AnimesEvent, AnimeState> {
   final GetTopAnimesUsecase getAllTopAnimes;
+  int pageIndex = 1;
   AnimesBloc({required this.getAllTopAnimes}) : super(AnimeInitial()) {
     on<AnimesEvent>((event, emit) async {
       if (event is GetTopAnimesEvent) {
+        pageIndex = 1;
+
         emit(LoadingAnimeState());
-        final failureOrAnimes = await getAllTopAnimes.call();
-        emit(_mapFailureOrAnimesToState(failureOrAnimes));
+        final failureOrAnimes = await getAllTopAnimes.call(pageIndex);
+        emit(_mapFailureOrAnimesToState(failureOrAnimes, false));
       } else if (event is RefreshAnimesEvent) {
+        pageIndex = 1;
         emit(LoadingAnimeState());
-        final failureOrAnimes = await getAllTopAnimes();
-        emit(_mapFailureOrAnimesToState(failureOrAnimes));
+        final failureOrAnimes = await getAllTopAnimes(pageIndex);
+        emit(_mapFailureOrAnimesToState(failureOrAnimes, false));
+      } else if (event is FetchMoreAnimeEvent) {
+        pageIndex++;
+
+        final failureOrAnimes = await getAllTopAnimes.call(pageIndex);
+        emit(_mapFailureOrAnimesToState(failureOrAnimes, true));
       }
     });
   }
-  AnimeState _mapFailureOrAnimesToState(Either<Failure, TopAnimeModel> either) {
+  AnimeState _mapFailureOrAnimesToState(
+      Either<Failure, TopAnimeModel> either, bool isMore) {
     return either.fold(
         (failure) => ErrorAnimesState(message: _mapFailureTOMessage(failure)),
         (animes) {
       return LoadedAnimeState(animes: animes);
+      // }
     });
   }
 

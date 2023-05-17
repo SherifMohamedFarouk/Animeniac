@@ -19,6 +19,13 @@ class LoadedMangaState extends MangaState {
   List<Object> get props => [mangas];
 }
 
+class LoadMoreMangaState extends MangaState {
+  final TopMangaModel mangas;
+  const LoadMoreMangaState({required this.mangas});
+  @override
+  List<Object> get props => [mangas];
+}
+
 class ErrorMangasState extends MangaState {
   final String message;
 

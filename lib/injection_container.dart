@@ -6,11 +6,11 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/network_info.dart';
-import 'features/anime_search/data/data_sources/anime_search_remote_data_source.dart';
-import 'features/anime_search/data/repositories/anime_search_repository_impl.dart';
-import 'features/anime_search/domain/repositories/anime_search_repository.dart';
-import 'features/anime_search/domain/use_cases/get_anime_search.dart';
-import 'features/anime_search/presentation/search_bloc/bloc/anime_search_bloc.dart';
+import 'features/search/anime_search/data/data_sources/anime_search_remote_data_source.dart';
+import 'features/search/anime_search/data/repositories/anime_search_repository_impl.dart';
+import 'features/search/anime_search/domain/repositories/anime_search_repository.dart';
+import 'features/search/anime_search/domain/use_cases/get_anime_search.dart';
+
 import 'features/auth/data/data_sources/firebase_data_source.dart';
 import 'features/auth/data/data_sources/firebase_data_source_impl.dart';
 import 'features/auth/data/repositories/firebase_repository_impl.dart';
@@ -19,6 +19,12 @@ import 'features/auth/domain/use_cases/sign_in_usecase.dart';
 import 'features/auth/domain/use_cases/sign_out_usecase.dart';
 import 'features/auth/domain/use_cases/sign_up_usecase.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
+import 'features/search/manga_search/data/data_sources/manga_search_remote_data_source.dart';
+import 'features/search/manga_search/data/repositories/manga_search_repository_impl.dart';
+import 'features/search/manga_search/domain/repositories/manga_search_repository.dart';
+import 'features/search/manga_search/domain/use_cases/get_manga_search.dart';
+import 'features/search/presentation/search_bloc/anime_search_bloc/anime_search_bloc.dart';
+import 'features/search/presentation/search_bloc/manga_search_bloc/manga_search_bloc.dart';
 import 'features/top_anime/data/data_sources/top_anime_remote_data_source.dart';
 import 'features/top_anime/data/repositories/top_anime_repository_impl.dart';
 import 'features/top_anime/domain/repositories/top_anime_repository.dart';
@@ -40,12 +46,14 @@ Future<void> init() async {
 
   sl.registerFactory(() => MangasBloc(getAllTopMangas: sl()));
   sl.registerFactory(() => AnimeSearchBloc(getAnimeSearch: sl()));
+  sl.registerFactory(() => MangaSearchBloc(getMangaSearch: sl()));
   sl.registerFactory(
       () => AuthCubit(signInUseCases: sl(), signUpUseCase: sl()));
   //Usecases
   sl.registerLazySingleton(() => GetTopAnimesUsecase(sl()));
   sl.registerLazySingleton(() => GetTopMangasUsecase(sl()));
   sl.registerLazySingleton(() => GetAnimeSearchUsecase(sl()));
+  sl.registerLazySingleton(() => GetMangaSearchUsecase(sl()));
   sl.registerLazySingleton(() => SignInUseCase(repository: sl.call()));
   sl.registerLazySingleton(() => SignUpUseCase(repository: sl.call()));
   sl.registerLazySingleton(() => SignOutUseCase(repository: sl.call()));
@@ -64,6 +72,11 @@ Future<void> init() async {
             networkInfo: sl(),
             remoteDataSource: sl(),
           ));
+  sl.registerLazySingleton<MangaSearchRepository>(
+      () => MangaSearchRepositoryImpl(
+            networkInfo: sl(),
+            remoteDataSource: sl(),
+          ));
   sl.registerLazySingleton<FirebaseRepository>(
       () => FirebaseRepositoryImpl(remoteDataSource: sl.call()));
 
@@ -75,6 +88,8 @@ Future<void> init() async {
       () => TopMangaRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<AnimeSearchRemoteDataSource>(
       () => AnimeSearchRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<MangaSearchRemoteDataSource>(
+      () => MangaSearchRemoteDataSourceImpl(client: sl()));
 
   sl.registerLazySingleton<FirebaseDataSource>(() => FirebaseDataSourceImpl(
         sl.call(),

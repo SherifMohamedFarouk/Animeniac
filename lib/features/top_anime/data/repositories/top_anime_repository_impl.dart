@@ -16,10 +16,10 @@ class TopAnimeRepositoryImpl implements TopAnimeRepository {
     required this.remoteDataSource,
   });
   @override
-  Future<Either<Failure, TopAnimeModel>> getTopAnimes() async {
+  Future<Either<Failure, TopAnimeModel>> getTopAnimes(pageIndex) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteAnimeList = await remoteDataSource.getTopAnimes();
+        final remoteAnimeList = await remoteDataSource.getTopAnimes(pageIndex);
         return Right(remoteAnimeList);
       } on ServerException {
         return Left(ServerFailure());

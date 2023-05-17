@@ -8,7 +8,7 @@ class GetTopAnimesUsecase {
   final TopAnimeRepository repository;
 
   GetTopAnimesUsecase(this.repository);
-  Future<Either<Failure, TopAnimeModel>> call() async {
-    return await repository.getTopAnimes();
+  Future<Either<Failure, TopAnimeModel>> call(pageIndex) async {
+    return await repository.getTopAnimes(pageIndex);
   }
 }

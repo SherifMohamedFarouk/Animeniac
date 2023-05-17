@@ -1,8 +1,16 @@
+import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
+
 import 'top_anime_imports.dart';
 
-class AllTopAnimeView extends StatelessWidget {
+class AllTopAnimeView extends StatefulWidget {
   const AllTopAnimeView({super.key});
 
+  @override
+  State<AllTopAnimeView> createState() => _AllTopAnimeViewState();
+}
+
+class _AllTopAnimeViewState extends State<AllTopAnimeView> {
+  List<AnimeData> animeList = [];
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -12,18 +20,23 @@ class AllTopAnimeView extends StatelessWidget {
           title: 'assets/images/Animeniac.png',
           page: 'Anime',
         ),
-        body: BlocBuilder<AnimesBloc, AnimeState>(
+        body: BlocConsumer<AnimesBloc, AnimeState>(
+          listener: (context, state) {
+            if (state is LoadedAnimeState) {
+              animeList.addAll(state.animes.data!);
+            } else if (state is LoadMoreAnimeState) {
+              animeList.addAll(state.animes.data!);
+            }
+          },
           builder: (context, state) {
             if (state is LoadingAnimeState) {
               return const LoadingWidget();
-            } else if (state is LoadedAnimeState) {
-              return RefreshIndicator(
-                  onRefresh: () => _onRefresh(context),
-                  child: AllTopAnimeWidget(animes: state.animes));
             } else if (state is ErrorAnimesState) {
               return MessageDisplayWidget(message: state.message);
             }
-            return const LoadingWidget();
+            return RefreshIndicator(
+                onRefresh: () => _onRefresh(context),
+                child: AllTopAnimeWidget(animes: animeList));
           },
         ),
       ),
@@ -35,34 +48,55 @@ class AllTopAnimeView extends StatelessWidget {
   }
 }
 
-class AllTopAnimeWidget extends StatelessWidget {
+class AllTopAnimeWidget extends StatefulWidget {
   const AllTopAnimeWidget({
     required this.animes,
     super.key,
   });
 
-  final TopAnimeModel animes;
+  final List<AnimeData> animes;
+
+  @override
+  State<AllTopAnimeWidget> createState() => _AllTopAnimeWidgetState();
+}
+
+class _AllTopAnimeWidgetState extends State<AllTopAnimeWidget> {
+  final _scrollController = ScrollController();
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener((() {
+      _onScroll();
+    }));
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AnimesBloc, AnimeState>(
       builder: (context, state) {
         return SingleChildScrollView(
+          controller: _scrollController,
           child: Column(
             children: [
               AnimeVerticalListView(
-                itemCount: animes.data!.length + 1,
+                itemCount: widget.animes.length + 1,
                 itemBuilder: (context, index) {
-                  if (index < animes.data!.length) {
+                  if (index < widget.animes.length) {
                     return AnimeVerticalListViewCard(
-                      animeData: animes.data![index],
+                      animeData: widget.animes[index],
                     );
                   } else {
                     return const LoadingIndicator();
                   }
-                },
-                addEvent: () {
-                  context.read<AnimesBloc>().add(FetchMoreAnimeEvent());
                 },
               ),
             ],
@@ -70,5 +104,12 @@ class AllTopAnimeWidget extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      context.read<AnimesBloc>().add(FetchMoreAnimeEvent());
+    }
   }
 }

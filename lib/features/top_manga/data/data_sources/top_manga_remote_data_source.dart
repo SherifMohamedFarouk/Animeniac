@@ -7,7 +7,7 @@ import '../../../../core/util/constants.dart';
 import '../models/top_manga_model.dart';
 
 abstract class TopMangaRemoteDataSource {
-  Future<TopMangaModel> getTopMangas();
+  Future<TopMangaModel> getTopMangas(pageIndex);
 }
 
 class TopMangaRemoteDataSourceImpl implements TopMangaRemoteDataSource {
@@ -15,9 +15,9 @@ class TopMangaRemoteDataSourceImpl implements TopMangaRemoteDataSource {
 
   TopMangaRemoteDataSourceImpl({required this.client});
   @override
-  Future<TopMangaModel> getTopMangas() async {
+  Future<TopMangaModel> getTopMangas(pageIndex) async {
     final response = await client.get(
-      Uri.parse("$baseUrl/top/manga"),
+      Uri.parse("$baseUrl/top/manga?page=${pageIndex}"),
       headers: {"Content-Type": "application/json"},
     );
     if (response.statusCode == 200) {

@@ -15,10 +15,10 @@ class TopMangaRepositoryImpl implements TopMangaRepository {
     required this.remoteDataSource,
   });
   @override
-  Future<Either<Failure, TopMangaModel>> getTopMangas() async {
+  Future<Either<Failure, TopMangaModel>> getTopMangas(pageIndex) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteMangaList = await remoteDataSource.getTopMangas();
+        final remoteMangaList = await remoteDataSource.getTopMangas(pageIndex);
         return Right(remoteMangaList);
       } on ServerException {
         return Left(ServerFailure());

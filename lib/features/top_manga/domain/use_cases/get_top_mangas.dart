@@ -8,7 +8,7 @@ class GetTopMangasUsecase {
   final TopMangaRepository repository;
 
   GetTopMangasUsecase(this.repository);
-  Future<Either<Failure, TopMangaModel>> call() async {
-    return await repository.getTopMangas();
+  Future<Either<Failure, TopMangaModel>> call(pageIndex) async {
+    return await repository.getTopMangas(pageIndex);
   }
 }

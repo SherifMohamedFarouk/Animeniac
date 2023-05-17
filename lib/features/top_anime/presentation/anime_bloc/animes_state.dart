@@ -19,6 +19,13 @@ class LoadedAnimeState extends AnimeState {
   List<Object> get props => [animes];
 }
 
+class LoadMoreAnimeState extends AnimeState {
+  final TopAnimeModel animes;
+  const LoadMoreAnimeState({required this.animes});
+  @override
+  List<Object> get props => [animes];
+}
+
 class ErrorAnimesState extends AnimeState {
   final String message;
 

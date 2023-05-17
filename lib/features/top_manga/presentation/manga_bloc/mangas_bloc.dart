@@ -12,24 +12,36 @@ part 'mangas_state.dart';
 
 class MangasBloc extends Bloc<MangasEvent, MangaState> {
   final GetTopMangasUsecase getAllTopMangas;
+  int pageIndex = 1;
   MangasBloc({required this.getAllTopMangas}) : super(MangaInitial()) {
     on<MangasEvent>((event, emit) async {
       if (event is GetTopMangasEvent) {
+        pageIndex = 1;
+
         emit(LoadingMangaState());
-        final failureOrMangas = await getAllTopMangas.call();
-        emit(_mapFailureOrMangasToState(failureOrMangas));
+        final failureOrAnimes = await getAllTopMangas.call(pageIndex);
+        emit(_mapFailureOrMangasToState(failureOrAnimes, false));
       } else if (event is RefreshMangasEvent) {
+        pageIndex = 1;
         emit(LoadingMangaState());
-        final failureOrMangas = await getAllTopMangas();
-        emit(_mapFailureOrMangasToState(failureOrMangas));
+        final failureOrAnimes = await getAllTopMangas(pageIndex);
+        emit(_mapFailureOrMangasToState(failureOrAnimes, false));
+      } else if (event is FetchMoreMangaEvent) {
+        pageIndex++;
+
+        final failureOrAnimes = await getAllTopMangas.call(pageIndex);
+        emit(_mapFailureOrMangasToState(failureOrAnimes, true));
       }
     });
   }
-  MangaState _mapFailureOrMangasToState(Either<Failure, TopMangaModel> either) {
+
+  MangaState _mapFailureOrMangasToState(
+      Either<Failure, TopMangaModel> either, bool isMore) {
     return either.fold(
         (failure) => ErrorMangasState(message: _mapFailureTOMessage(failure)),
         (mangas) {
       return LoadedMangaState(mangas: mangas);
+      // }
     });
   }
 
