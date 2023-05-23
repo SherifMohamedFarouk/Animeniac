@@ -66,25 +66,3 @@ class MangaDetailsWidget extends StatelessWidget {
     }
   }
 }
-
-
-
-// Widget _getReviews(List<Review>? reviews) {
-//   if (reviews != null && reviews.isNotEmpty) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         const SectionTitle(title: AppStrings.reviews),
-//         SectionListView(
-//           height: 175,
-//           itemCount: reviews.length,
-//           itemBuilder: (context, index) => ReviewCard(
-//             review: reviews[index],
-//           ),
-//         ),
-//       ],
-//     );
-//   } else {
-//     return const SizedBox();
-//   }
-// }

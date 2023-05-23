@@ -1,4 +1,4 @@
-import 'package:animeniac/features/top_anime/data/models/classes/anime_data.dart';
+import '../../data/models/classes/anime_data.dart';
 
 import 'top_anime_imports.dart';
 
@@ -18,7 +18,7 @@ class _AllTopAnimeViewState extends State<AllTopAnimeView> {
       child: Scaffold(
         appBar: const TopBar(
           title: 'assets/images/Animeniac.png',
-          page: 'Anime',
+          page: 'Animes',
         ),
         body: BlocConsumer<AnimesBloc, AnimeState>(
           listener: (context, state) {

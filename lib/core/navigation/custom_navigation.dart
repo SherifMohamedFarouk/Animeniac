@@ -1,15 +1,18 @@
+import '../../features/watch_list/data/models/watchlist_item_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/views/sign_in_view/sign_in_view.dart';
 import '../../features/auth/presentation/views/sign_up_view/sign_up_view.dart';
 import '../../features/auth/presentation/views/splash_view/splash_view.dart';
+import '../../features/nav_screen/nav_bar_screen.dart';
 import '../../features/top_anime/data/models/classes/anime_data.dart';
 import '../../features/top_anime/presentation/views/all_top_animes_view.dart';
 import '../../features/top_anime/presentation/views/anime_details.dart';
 import '../../features/top_manga/data/models/classes/manga_data.dart';
 import '../../features/top_manga/presentation/views/all_top_manga_view.dart';
 import '../../features/top_manga/presentation/views/manga_details_view.dart';
-import '../../features/watch_list/watch_list.dart';
+import '../../features/watch_list/presentation/views/watch_list.dart';
+import '../../features/watch_list/presentation/views/watch_list_details.dart';
 import 'routes.dart';
 
 abstract class CustomNavigator {
@@ -22,31 +25,37 @@ abstract class CustomNavigator {
     var arguments = settings.arguments;
 
     switch (settings.name) {
-      // case Routes.APP:
-      //   return MaterialPageRoute(builder: (_) => MyApp());
-      case Routes.SPLASH:
+      case Routes.main:
+        return MaterialPageRoute(builder: (_) => const NavBarScreen());
+      case Routes.splash:
         return MaterialPageRoute(builder: (_) => const SplashView());
-      case Routes.SIGN_IN:
+      case Routes.signIn:
         return MaterialPageRoute(builder: (_) => const SignInView());
-      case Routes.SIGN_UP:
+      case Routes.signUp:
         return MaterialPageRoute(builder: (_) => const SignUpView());
-      case Routes.WATCH_LIST:
+      case Routes.watchList:
         return MaterialPageRoute(builder: (_) => const WatchListView());
-      case Routes.ALL_TOP_ANIMES:
+      case Routes.allTopAnimes:
         return MaterialPageRoute(builder: (_) => const AllTopAnimeView());
-      case Routes.ALL_TOP_MANGAS:
+      case Routes.allTopMangas:
         return MaterialPageRoute(builder: (_) => const AllTopMangaView());
-      case Routes.ANIME_DETAILS:
+      case Routes.animeDetails:
         AnimeData animeDetails = arguments as AnimeData;
         return MaterialPageRoute(
             builder: (_) => AnimeDetailsView(
                   animeDetails: animeDetails,
                 ));
-      case Routes.MANGA_DETAILS:
+      case Routes.mangaDetails:
         MangaData mangaDetails = arguments as MangaData;
         return MaterialPageRoute(
             builder: (_) => MangaDetailsView(
                   mangaDetails: mangaDetails,
+                ));
+      case Routes.watchListDetails:
+        WatchListModel watchListDetails = arguments as WatchListModel;
+        return MaterialPageRoute(
+            builder: (_) => WatchListDetailsView(
+                  watchListDetails: watchListDetails,
                 ));
       default:
         return MaterialPageRoute(builder: (_) => const SplashView());

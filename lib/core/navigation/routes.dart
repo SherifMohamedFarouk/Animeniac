@@ -1,12 +1,13 @@
 abstract class Routes {
-  static const SPLASH = "SPLASH";
-  static const APP = "APP";
-  static const MAIN = "MAIN";
-  static const SIGN_UP = "SIGN_UP";
-  static const SIGN_IN = "SIGN_IN";
-  static const WATCH_LIST = "WATCH_LIST";
-  static const ANIME_DETAILS = "ANIME_DETAILS";
-  static const MANGA_DETAILS = "MANGA_DETAILS";
-  static const ALL_TOP_ANIMES = "ALL_TOP_ANIMES";
-  static const ALL_TOP_MANGAS = "ALL_TOP_MANGAS";
+  static const splash = "SPLASH";
+  static const app = "APP";
+  static const main = "MAIN";
+  static const signUp = "SIGN_UP";
+  static const signIn = "SIGN_IN";
+  static const watchList = "WATCH_LIST";
+  static const animeDetails = "ANIME_DETAILS";
+  static const mangaDetails = "MANGA_DETAILS";
+  static const watchListDetails = "WATCHLIST_DETAILS";
+  static const allTopAnimes = "ALL_TOP_ANIMES";
+  static const allTopMangas = "ALL_TOP_MANGAS";
 }

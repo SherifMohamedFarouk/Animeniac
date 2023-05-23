@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
@@ -15,13 +16,13 @@ class MangaSectionListViewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return SizedBox(
-      width: 120,
+      width: 32.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
             onTap: () {
-              CustomNavigator.push(Routes.MANGA_DETAILS,
+              CustomNavigator.push(Routes.mangaDetails,
                   arguments: mangaDetails);
             },
             child: ClipRRect(
@@ -29,7 +30,7 @@ class MangaSectionListViewCard extends StatelessWidget {
               child: ImageWithShimmer(
                 imageUrl: mangaDetails.images!.jpg!.largeImageUrl.toString(),
                 width: double.infinity,
-                height: 175,
+                height: 22.h,
               ),
             ),
           ),

@@ -13,7 +13,7 @@ class NewTextField extends StatefulWidget {
 
   final String hint;
   final String label;
-  final validator;
+  final dynamic validator;
 
   final ValueChanged<String>? onchanged;
   final VoidCallback? onEditingComplete;
@@ -38,13 +38,13 @@ class _NewTextFieldState extends State<NewTextField> {
         onTap: widget.onTap,
         decoration: InputDecoration(
           labelText: widget.label,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: widget.hint,
-          hintStyle: TextStyle(),
+          hintStyle: const TextStyle(),
         ),
         textInputAction: TextInputAction.next,
       ),

@@ -1,6 +1,8 @@
+import '../../../../core/util/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../core/shared/shared_preference/sharedpref_helper.dart';
 import '../../domain/entites/user_data.dart';
 import 'firebase_data_source.dart';
 
@@ -16,8 +18,9 @@ class FirebaseDataSourceImpl implements FirebaseDataSource {
 
   @override
   Future<void> signIn(UserData user) async {
-    await auth.signInWithEmailAndPassword(
+    final result = await auth.signInWithEmailAndPassword(
         email: user.email, password: user.password);
+    SharedPref.saveData(key: userUid, value: result.user!.uid);
   }
 
   @override

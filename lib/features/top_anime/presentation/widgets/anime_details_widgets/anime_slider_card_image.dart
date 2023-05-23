@@ -1,6 +1,6 @@
-import '../../../../../core/color/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/color/colors.dart';
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 
 class AnimeSliderCardImage extends StatelessWidget {
@@ -9,7 +9,7 @@ class AnimeSliderCardImage extends StatelessWidget {
     required this.imageUrl,
   });
 
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,8 @@ class AnimeSliderCardImage extends StatelessWidget {
       child: ImageWithShimmer(
         height: size.height * 0.6,
         width: double.infinity,
-        imageUrl: imageUrl,
+        imageUrl: imageUrl ??
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
       ),
     );
   }

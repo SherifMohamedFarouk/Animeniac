@@ -1,6 +1,7 @@
+import '../../../../../core/navigation/custom_navigation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../nav_screen/nav_bar_screen.dart';
+import '../../../../../core/navigation/routes.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -12,20 +13,12 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   Future<void> navigateToSignIn() async {
     await Future.delayed(const Duration(seconds: 2), () async {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return const NavBarScreen();
-          },
-        ),
-        (_) => false,
-      );
+      CustomNavigator.push(Routes.main, clean: true);
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     navigateToSignIn();
   }

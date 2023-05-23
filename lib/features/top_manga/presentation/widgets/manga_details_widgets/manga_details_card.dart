@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/color/colors.dart';
@@ -74,8 +75,8 @@ class MangaDetailsCard extends StatelessWidget {
                           }
                         },
                         child: Container(
-                          height: 40,
-                          width: 40,
+                          height: 10.h,
+                          width: 10.w,
                           decoration: const BoxDecoration(
                             color: primaryColor,
                             shape: BoxShape.circle,

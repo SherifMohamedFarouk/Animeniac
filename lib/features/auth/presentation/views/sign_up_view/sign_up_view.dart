@@ -1,3 +1,5 @@
+import 'package:sizer/sizer.dart';
+
 import 'sign_up_imports.dart';
 
 class SignUpView extends StatefulWidget {
@@ -28,7 +30,6 @@ class _SignUpViewState extends State<SignUpView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     emailController.dispose();
     nameController.dispose();
     passwordController.dispose();
@@ -53,13 +54,13 @@ class _SignUpViewState extends State<SignUpView> {
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.053),
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: screenHeight * 0.04,
+                height: 4.h,
               ),
               CustomTextFieldForAuth(
                 validate: validateName,
@@ -78,7 +79,7 @@ class _SignUpViewState extends State<SignUpView> {
                 },
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 2.h,
               ),
               CustomTextFieldForAuth(
                   validate: validateEmail,
@@ -104,7 +105,7 @@ class _SignUpViewState extends State<SignUpView> {
                         : errorColor,
                   )),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 2.h,
               ),
               CustomTextFieldForAuth(
                   textEditingController: passwordController,
@@ -154,13 +155,14 @@ class _SignUpViewState extends State<SignUpView> {
                         : errorColor,
                   )),
               SizedBox(
-                height: screenHeight * 0.006,
+                height: 1.h,
               ),
               Text(
                 "pw_text".tr(context),
+                textAlign: TextAlign.start,
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 2.h,
               ),
               CustomTextFieldForAuth(
                   validate: validateConfirmPassword,
@@ -209,10 +211,10 @@ class _SignUpViewState extends State<SignUpView> {
                         : errorColor,
                   )),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 2.h,
               ),
               SizedBox(
-                height: screenHeight * 0.06,
+                height: 6.h,
               ),
               BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
@@ -242,7 +244,7 @@ class _SignUpViewState extends State<SignUpView> {
                         },
                 ),
               ),
-              SizedBox(height: screenHeight * 0.03),
+              SizedBox(height: 3.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
@@ -264,7 +266,7 @@ class _SignUpViewState extends State<SignUpView> {
                   ],
                 ),
               ),
-              SizedBox(height: screenHeight * 0.3),
+              SizedBox(height: 25.h),
             ],
           ),
         ),

@@ -23,7 +23,7 @@ class AnimeSliderCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        CustomNavigator.push(Routes.ANIME_DETAILS, arguments: animeData);
+        CustomNavigator.push(Routes.animeDetails, arguments: animeData);
       },
       child: SafeArea(
         child: Stack(
@@ -71,14 +71,14 @@ class AnimeSliderCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: List.generate(
                           5,
-                          (indexDot) {
+                          (indexD) {
                             return Container(
                               margin: const EdgeInsets.only(right: 10),
-                              width: indexDot == itemIndex ? 30 : 6,
+                              width: indexD == itemIndex ? 30 : 6,
                               height: 6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color: indexDot == itemIndex
+                                color: indexD == itemIndex
                                     ? primaryColor
                                     : secondaryColor,
                               ),

@@ -46,8 +46,6 @@ class AnimeDetailsWidget extends StatelessWidget {
             ),
           ),
           getOverviewSection(animeDetails.synopsis.toString()),
-          // _getReviews(animeDetails.reviews),
-          // getSimilarSection(animeDetails.similar),
           const SizedBox(height: 8),
         ],
       ),
@@ -68,25 +66,3 @@ class AnimeDetailsWidget extends StatelessWidget {
     }
   }
 }
-
-
-
-// Widget _getReviews(List<Review>? reviews) {
-//   if (reviews != null && reviews.isNotEmpty) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         const SectionTitle(title: AppStrings.reviews),
-//         SectionListView(
-//           height: 175,
-//           itemCount: reviews.length,
-//           itemBuilder: (context, index) => ReviewCard(
-//             review: reviews[index],
-//           ),
-//         ),
-//       ],
-//     );
-//   } else {
-//     return const SizedBox();
-//   }
-// }

@@ -1,3 +1,5 @@
+import 'package:sizer/sizer.dart';
+
 import '../../../../core/navigation/custom_navigation.dart';
 import '../../../../core/navigation/routes.dart';
 import '../widgets/manga_details_widgets/manga_section_header.dart';
@@ -67,11 +69,11 @@ class TopMangaWidget extends StatelessWidget {
                 MangaSectionHeader(
                   title: 'Top Mangas',
                   onSeeAllTap: () {
-                    CustomNavigator.push(Routes.ALL_TOP_MANGAS);
+                    CustomNavigator.push(Routes.allTopMangas);
                   },
                 ),
                 MangaSectionListView(
-                  height: 240,
+                  height: 32.h,
                   itemCount: mangas.data!.length,
                   itemBuilder: (context, index) {
                     if (index < 5) {

@@ -13,7 +13,7 @@ class PasswordTextfield extends StatefulWidget {
       : super(key: key);
   final String label;
   final String hint;
-  final validator;
+  final dynamic validator;
 
   final ValueChanged<String>? onchanged;
   final VoidCallback? onEditingComplete;

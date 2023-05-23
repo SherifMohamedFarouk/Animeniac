@@ -6,11 +6,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/network_info.dart';
-import 'features/search/anime_search/data/data_sources/anime_search_remote_data_source.dart';
-import 'features/search/anime_search/data/repositories/anime_search_repository_impl.dart';
-import 'features/search/anime_search/domain/repositories/anime_search_repository.dart';
-import 'features/search/anime_search/domain/use_cases/get_anime_search.dart';
-
 import 'features/auth/data/data_sources/firebase_data_source.dart';
 import 'features/auth/data/data_sources/firebase_data_source_impl.dart';
 import 'features/auth/data/repositories/firebase_repository_impl.dart';
@@ -19,6 +14,10 @@ import 'features/auth/domain/use_cases/sign_in_usecase.dart';
 import 'features/auth/domain/use_cases/sign_out_usecase.dart';
 import 'features/auth/domain/use_cases/sign_up_usecase.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
+import 'features/search/anime_search/data/data_sources/anime_search_remote_data_source.dart';
+import 'features/search/anime_search/data/repositories/anime_search_repository_impl.dart';
+import 'features/search/anime_search/domain/repositories/anime_search_repository.dart';
+import 'features/search/anime_search/domain/use_cases/get_anime_search.dart';
 import 'features/search/manga_search/data/data_sources/manga_search_remote_data_source.dart';
 import 'features/search/manga_search/data/repositories/manga_search_repository_impl.dart';
 import 'features/search/manga_search/domain/repositories/manga_search_repository.dart';

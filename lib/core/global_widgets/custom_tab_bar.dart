@@ -20,16 +20,6 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
       indicatorPadding: EdgeInsets.zero,
-      // indicator: BoxDecoration(
-      //     border: isBottomIndicator
-      //         ? const Border(
-      //             bottom: BorderSide(
-      //             width: 3,
-      //           ))
-      //         : const Border(
-      //             top: BorderSide(
-      //             width: 3,
-      //           ))),
       tabs: icons
           .asMap()
           .map((i, e) => MapEntry(

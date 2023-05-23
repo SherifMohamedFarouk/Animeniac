@@ -1,3 +1,7 @@
+import '../../../../../core/util/snackbar_message.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../../../../core/global_widgets/login_top_bar.dart';
 import 'sign_in_imports.dart';
 
 class SignInBody extends StatefulWidget {
@@ -20,7 +24,6 @@ class _SignInBodyState extends State<SignInBody> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     emailController.addListener(() {});
     passwordController.addListener(() {});
@@ -32,10 +35,11 @@ class _SignInBodyState extends State<SignInBody> {
     var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: const LoginTopBar(title: 'Login To Make A WatchList'),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.053),
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,32 +47,38 @@ class _SignInBodyState extends State<SignInBody> {
             Column(
               children: [
                 SizedBox(
-                  height: screenHeight * 0.1,
+                  height: 10.h,
                 ),
                 Center(
                   child: Image.asset('assets/images/Animeniac.png'),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.1,
+                  height: 10.h,
                 ),
               ],
             ),
             CustomTextFieldForAuth(
-              textEditingController: emailController,
-              keyboardType: TextInputType.emailAddress,
-              obscureText: false,
-              textAlign: TextAlign.justify,
-              hintText: "email".tr(context),
-              labelText: "email".tr(context),
-              onEditingComplete: () async {
-                FocusScope.of(context).unfocus();
-              },
-              onChanged: (value) {
-                emailCheck();
-              },
-            ),
+                validate: validateEmail,
+                textEditingController: emailController,
+                keyboardType: TextInputType.emailAddress,
+                obscureText: false,
+                textAlign: TextAlign.justify,
+                hintText: "email".tr(context),
+                labelText: "email".tr(context),
+                errorText: validateEmail ? emailErrorText : "",
+                onEditingComplete: () async {
+                  FocusScope.of(context).unfocus();
+                },
+                onChanged: (value) {
+                  emailCheck();
+                },
+                textStyle: TextStyle(
+                  color: !validateEmail
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : errorColor,
+                )),
             SizedBox(
-              height: screenHeight * 0.02,
+              height: 2.h,
             ),
             CustomTextFieldForAuth(
               textEditingController: passwordController,
@@ -105,7 +115,7 @@ class _SignInBodyState extends State<SignInBody> {
                     ),
             ),
             SizedBox(
-              height: screenHeight * 0.02,
+              height: 2.h,
             ),
             InkWell(
               splashColor: Colors.transparent,
@@ -117,17 +127,25 @@ class _SignInBodyState extends State<SignInBody> {
               ),
             ),
             SizedBox(
-              height: screenHeight * 0.05,
+              height: 5.h,
             ),
             BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is AuthLoading) {
                   context.loaderOverlay.show(widget: const ProcessingOverLay());
                 } else if (state is AuthSuccess) {
-                  CustomNavigator.push(Routes.WATCH_LIST);
+                  CustomNavigator.push(Routes.main, clean: true);
+
                   context.loaderOverlay.hide();
+                  SnackBarMessage().showSuccessSnackBar(
+                      message: "You've Succesfully Logged In",
+                      context: context);
                 } else if (state is AuthFailure) {
                   context.loaderOverlay.hide();
+                  SnackBarMessage().showErrorSnackBar(
+                      message:
+                          "Invalid Credentials Or Network Error, PLease Try Again!",
+                      context: context);
                 }
               },
               child: LoginButton(
@@ -142,7 +160,7 @@ class _SignInBodyState extends State<SignInBody> {
                         }
                       : null),
             ),
-            SizedBox(height: screenHeight * 0.032),
+            SizedBox(height: 3.h),
             Center(
               child: RichText(
                 text: TextSpan(
@@ -159,12 +177,7 @@ class _SignInBodyState extends State<SignInBody> {
                         alignment: PlaceholderAlignment.middle,
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpView(),
-                              ),
-                            );
+                            CustomNavigator.push(Routes.signUp);
                           },
                           child: Text(
                             "sign_up".tr(context),
@@ -175,7 +188,7 @@ class _SignInBodyState extends State<SignInBody> {
                 ),
               ),
             ),
-            SizedBox(height: screenHeight * 0.3),
+            SizedBox(height: 25.h),
           ],
         ),
       ),

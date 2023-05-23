@@ -8,6 +8,7 @@ const lightgrayColor = Color(0x44948282);
 const whiteColor = Color(0xFFFFFFFF);
 const blackColor = Color(0xFF2B2B2B);
 const errorColor = Color(0xffEB001B);
+const successColor = Color(0xff00FF00);
 
 Color lightBackgroundColor = const Color(0xFFFFFFFF);
 

@@ -13,7 +13,6 @@ class UserData extends Equatable {
     this.password = "",
   });
   @override
-  // TODO: implement props
   List<Object?> get props => [name, email, uid, password];
 
   Map<String, dynamic> toJson() {

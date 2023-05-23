@@ -1,14 +1,6 @@
-import '../../../../../core/color/colors.dart';
-import '../../../data/models/classes/anime_data.dart';
+import 'widgets.imports.dart';
 
-import '../../views/top_anime_imports.dart';
-import 'package:flutter/material.dart';
-
-import 'package:url_launcher/url_launcher.dart';
-
-import 'anime_slider_card_image.dart';
-
-class AnimeDetailsCard extends StatelessWidget {
+class AnimeDetailsCard extends StatefulWidget {
   const AnimeDetailsCard({
     required this.detailsWidget,
     super.key,
@@ -19,154 +11,188 @@ class AnimeDetailsCard extends StatelessWidget {
   final AnimeData animeDetails;
 
   @override
+  State<AnimeDetailsCard> createState() => _AnimeDetailsCardState();
+}
+
+class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
+  bool isFav = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String? docId;
+
+  @override
+  void initState() {
+    super.initState();
+    doesFavAlreadyExist(widget.animeDetails.malId);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Stack(
-        children: [
-          AnimeSliderCardImage(
-              imageUrl: animeDetails.images!.jpg!.largeImageUrl!),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: SizedBox(
+        child: Stack(children: [
+      AnimeSliderCardImage(
+          imageUrl: widget.animeDetails.images!.jpg!.largeImageUrl!),
+      Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
               height: size.height * 0.6,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            animeDetails.titleEnglish ?? animeDetails.title!,
-                            maxLines: 2,
-                            style: textTheme.titleMedium,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 4,
-                              bottom: 6,
-                            ),
-                            child: detailsWidget,
-                          ),
-                          Row(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Rating : ${animeDetails.rating} ',
-                                style: textTheme.bodyMedium,
+                                widget.animeDetails.titleEnglish ??
+                                    widget.animeDetails.title!,
+                                maxLines: 2,
+                                style: textTheme.titleMedium,
                               ),
-                              Text(
-                                'Rank : ${animeDetails.rank!.toString()}',
-                                style: textTheme.bodySmall,
-                              )
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 4,
+                                  bottom: 6,
+                                ),
+                                child: widget.detailsWidget,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Rating : ${widget.animeDetails.rating} ',
+                                    style: textTheme.bodyMedium,
+                                  ),
+                                  if (widget.animeDetails.rank != null) ...[
+                                    Text(
+                                      'Rank : ${widget.animeDetails.rank!.toString()} ,',
+                                      style: textTheme.bodySmall,
+                                    ),
+                                  ],
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
-                    if (animeDetails.trailer!.url != null) ...[
-                      InkWell(
-                        onTap: () async {
-                          final url = Uri.parse(animeDetails.trailer!.url!);
-                          if (!await launchUrl(url)) {
-                            throw Exception('Could not launch $url');
-                          }
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                            color: primaryColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.play_arrow_rounded,
-                          ),
                         ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
+                        if (widget.animeDetails.trailer!.url != null) ...[
+                          InkWell(
+                              onTap: () async {
+                                final url = Uri.parse(
+                                    widget.animeDetails.trailer!.url!);
+                                if (!await launchUrl(url)) {
+                                  throw Exception('Could not launch $url');
+                                }
+                              },
+                              child: Container(
+                                  height: 10.h,
+                                  width: 10.w,
+                                  decoration: const BoxDecoration(
+                                    color: primaryColor,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.play_arrow_rounded,
+                                  )))
+                        ]
+                      ])))),
+      Padding(
+          padding: const EdgeInsets.only(
+            top: 12,
+            left: 16,
+            right: 16,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 12,
-              left: 16,
-              right: 16,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            InkWell(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 20,
-                    ),
-                  ),
-                ),
-                // InkWell(
-                //   onTap: () {
-                //     animeDetails.isAdded
-                //         ? context
-                //             .read<WatchlistBloc>()
-                //             .add(RemoveWatchListItemEvent(animeDetails.id!))
-                //         : context.read<WatchlistBloc>().add(
-                //               AddWatchListItemEvent(
-                //                   media: Media.fromMediaDetails(animeDetails)),
-                //             );
-                //   },
-                //   child: Container(
-                //     padding: const EdgeInsets.all(8),
-                //     decoration: const BoxDecoration(
-                //       shape: BoxShape.circle,
-                //     ),
-                //     child: BlocConsumer<WatchlistBloc, WatchlistState>(
-                //       listener: (context, state) {
-                //         if (state.status == WatchlistRequestStatus.itemAdded) {
-                //           animeDetails.id = state.id;
-                //           animeDetails.isAdded = true;
-                //         } else if (state.status ==
-                //             WatchlistRequestStatus.itemRemoved) {
-                //           animeDetails.id = null;
-                //           animeDetails.isAdded = false;
-                //         } else if (state.status ==
-                //                 WatchlistRequestStatus.isItemAdded &&
-                //             state.id != -1) {
-                //           animeDetails.id = state.id;
-                //           animeDetails.isAdded = true;
-                //         }
-                //       },
-                //       builder: (context, state) {
-                //         return Icon(
-                //           Icons.bookmark_rounded,
-                //           color: animeDetails.isAdded
-                //               ? AppColors.primary
-                //               : AppColors.secondaryText,
-                //           size: AppSize.s20,
-                //         );
-                //       },
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                    child: const Icon(Icons.arrow_back_ios_new_rounded,
+                        size: 20))),
+            FirebaseAuth.instance.currentUser != null
+                ? InkWell(
+                    onTap: () async {
+                      if (!isFav) {
+                        FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(auth.currentUser!.uid)
+                            .collection('watchList')
+                            .add({
+                          'malId': widget.animeDetails.malId,
+                          'posterUrl':
+                              widget.animeDetails.images!.jpg!.imageUrl,
+                          'rating': widget.animeDetails.rating,
+                          'releaseDate': widget.animeDetails.year,
+                          'score': widget.animeDetails.score,
+                          'title': widget.animeDetails.titleEnglish ??
+                              widget.animeDetails.title,
+                          'largeImage':
+                              widget.animeDetails.images!.jpg!.largeImageUrl,
+                          'rank': widget.animeDetails.rank,
+                          'trailer': widget.animeDetails.trailer!.url,
+                          'description': widget.animeDetails.synopsis,
+                          'episodes': widget.animeDetails.episodes,
+                        });
+                      } else {
+                        FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(auth.currentUser!.uid)
+                            .collection('watchList')
+                            .doc(docId)
+                            .delete();
+                      }
+
+                      setState(() {
+                        isFav = !isFav;
+                      });
+                    },
+                    child: Icon(
+                      isFav
+                          ? Icons.favorite_sharp
+                          : Icons.favorite_border_sharp,
+                      color: secondaryColor,
+                      size: 35,
+                    ))
+                : InkWell(
+                    onTap: () {
+                      CustomNavigator.push(
+                        Routes.signIn,
+                      );
+                    },
+                    child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: primaryColor,
+                        ),
+                        child: Row(children: const [
+                          Text('Add'),
+                          Icon(Icons.add_box)
+                        ])))
+          ]))
+    ]));
+  }
+
+  //functions
+  void doesFavAlreadyExist(malId) async {
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('watchList')
+        .where('malId', isEqualTo: malId)
+        .limit(1)
+        .get();
+    final List<DocumentSnapshot> documents = result.docs;
+    setState(() {
+      isFav = documents.length == 1;
+      if (isFav) docId = documents.first.id;
+    });
   }
 }

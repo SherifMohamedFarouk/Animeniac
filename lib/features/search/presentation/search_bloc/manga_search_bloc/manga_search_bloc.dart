@@ -35,11 +35,11 @@ class MangaSearchBloc extends Bloc<MangaSearchEvent, MangaSearchState> {
   String _mapFailureTOMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return SERVER_FAILURE_MESSAGE;
+        return serverFailureMessage;
       case EmptyCacheFailure:
-        return EMPTY_CACHE_FAILURE_MESSAGE;
+        return emptyCacheFailureMessage;
       case OfflineFailure:
-        return OFFLINE_FAILURE_MESSAGE;
+        return offlineFailureMessage;
       default:
         return "Unexpected Error, Please try again later .";
     }

@@ -60,10 +60,10 @@ class CustomTextFieldForAuth extends StatefulWidget {
   final TextStyle? textStyle;
 
   @override
-  _CustomTextFieldForAuthState createState() => _CustomTextFieldForAuthState();
+  CustomTextFieldForAuthState createState() => CustomTextFieldForAuthState();
 }
 
-class _CustomTextFieldForAuthState extends State<CustomTextFieldForAuth> {
+class CustomTextFieldForAuthState extends State<CustomTextFieldForAuth> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -87,15 +87,21 @@ class _CustomTextFieldForAuthState extends State<CustomTextFieldForAuth> {
             borderSide: BorderSide(color: primaryColor.withOpacity(0.5))),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: !widget.validate! ? primaryColor : Color(0xffEB001B))),
+                color: !widget.validate!
+                    ? primaryColor
+                    : const Color(0xffEB001B))),
         border: UnderlineInputBorder(
             borderSide: BorderSide(color: primaryColor.withOpacity(0.5))),
         errorBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: !widget.validate! ? primaryColor : Color(0xffEB001B))),
+                color: !widget.validate!
+                    ? primaryColor
+                    : const Color(0xffEB001B))),
         focusedErrorBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: !widget.validate! ? primaryColor : Color(0xffEB001B))),
+                color: !widget.validate!
+                    ? primaryColor
+                    : const Color(0xffEB001B))),
         filled: true,
         fillColor: Colors.transparent,
         suffixIconConstraints:
@@ -112,19 +118,20 @@ class _CustomTextFieldForAuthState extends State<CustomTextFieldForAuth> {
               fontWeight: FontWeight.w400,
               fontSize: 14,
               height: 3.5,
-              color: !widget.validate! ? secondaryColor : Color(0xffEB001B),
+              color:
+                  !widget.validate! ? secondaryColor : const Color(0xffEB001B),
             ),
         labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w600,
               fontSize: 18,
-              color: !widget.validate! ? primaryColor : Color(0xffEB001B),
+              color: !widget.validate! ? primaryColor : const Color(0xffEB001B),
             ),
         labelText: widget.labelText,
         errorText: widget.errorText != "" ? widget.errorText : null,
         errorStyle: Theme.of(context)
             .textTheme
             .bodyLarge!
-            .copyWith(height: 1, color: Color(0xffEB001B)),
+            .copyWith(height: 1, color: const Color(0xffEB001B)),
         prefix:
             widget.prefix ?? const Padding(padding: EdgeInsets.only(left: 0.0)),
       ),

@@ -1,3 +1,5 @@
+import 'package:sizer/sizer.dart';
+
 import '../../../../core/navigation/custom_navigation.dart';
 import '../../../../core/navigation/routes.dart';
 import '../widgets/anime_details_widgets/anime_section_header.dart';
@@ -67,11 +69,11 @@ class TopAnimeWidget extends StatelessWidget {
                 AnimeSectionHeader(
                   title: 'Top Animes',
                   onSeeAllTap: () {
-                    CustomNavigator.push(Routes.ALL_TOP_ANIMES);
+                    CustomNavigator.push(Routes.allTopAnimes);
                   },
                 ),
                 AnimeSectionListView(
-                  height: 240,
+                  height: 32.h,
                   itemCount: animes.data!.length,
                   itemBuilder: (context, index) {
                     if (index < 5) {

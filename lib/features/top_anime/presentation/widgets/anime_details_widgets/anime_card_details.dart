@@ -21,18 +21,14 @@ class AnimeCardDetails extends StatelessWidget {
               'Episodes : ${animeDetails.episodes!.toString()} ,',
               style: textTheme.bodyLarge,
             ),
-            // const CircleDot(),
           ],
           if (animeDetails.year != null) ...[
             Text(
               'Year : ${animeDetails.year.toString()} ,',
               style: textTheme.bodyLarge,
             ),
-            // const CircleDot(),
           ] else ...[
-            if (animeDetails.score != null) ...[
-              // const CircleDot(),
-            ]
+            if (animeDetails.score != null) ...[]
           ],
           Text(
             'Score:',

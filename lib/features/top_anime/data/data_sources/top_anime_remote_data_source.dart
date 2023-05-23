@@ -17,7 +17,7 @@ class TopAnimeRemoteDataSourceImpl implements TopAnimeRemoteDataSource {
   @override
   Future<TopAnimeModel> getTopAnimes(pageIndex) async {
     final response = await client.get(
-      Uri.parse("$baseUrl/top/anime?page=${pageIndex}"),
+      Uri.parse("$baseUrl/top/anime?page=$pageIndex"),
       headers: {"Content-Type": "application/json"},
     );
     if (response.statusCode == 200) {

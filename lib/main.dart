@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                 title: 'Animeniac',
                 theme: AppTheme.themeData(state.isDarkThemeOn, context),
                 navigatorKey: CustomNavigator.navigatorState,
-                initialRoute: Routes.SPLASH,
+                initialRoute: Routes.splash,
                 onGenerateRoute: CustomNavigator.onCreateRoute,
                 navigatorObservers: [CustomNavigator.routeObserver],
               ),

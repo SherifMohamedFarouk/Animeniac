@@ -1,3 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../core/color/colors.dart';
+import '../../core/navigation/custom_navigation.dart';
+import '../../core/navigation/routes.dart';
 import 'settings_imports.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -8,15 +13,16 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: const TopBar(
+          appBar: TopBar(
             title: 'assets/images/Animeniac.png',
-            page: 'Settings',
+            page: "settings".tr(context),
           ),
           body: Column(
             children: [
@@ -62,16 +68,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   );
                 },
               ),
-              SettingsWidget(
-                action: () {
-                  // Logout.logout(context);
-                },
-                leadingTitle: 'log_out'.tr(context),
-                trailingIcon: const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 10,
-                ),
-              ),
+              FirebaseAuth.instance.currentUser != null
+                  ? SettingsWidget(
+                      action: () {
+                        auth.signOut();
+                        CustomNavigator.push(Routes.main, clean: true);
+                      },
+                      leadingTitle: 'log_out'.tr(context),
+                      trailingIcon: const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 15,
+                        color: errorColor,
+                      ),
+                    )
+                  : SettingsWidget(
+                      action: () {
+                        CustomNavigator.push(Routes.signIn, clean: false);
+                      },
+                      leadingTitle: 'log_in'.tr(context),
+                      trailingIcon: const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 15,
+                        color: successColor,
+                      ),
+                    ),
             ],
           ),
         );

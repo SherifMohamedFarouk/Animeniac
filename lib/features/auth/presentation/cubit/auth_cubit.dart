@@ -32,8 +32,11 @@ class AuthCubit extends Cubit<AuthState> {
       required String name}) async {
     emit(AuthLoading());
     try {
-      await signUpUseCase
-          .call(UserData(email: email, password: password, name: name));
+      await signUpUseCase.call(UserData(
+        email: email,
+        password: password,
+        name: name,
+      ));
       emit(AuthSuccess());
     } catch (error) {
       emit(AuthFailure());

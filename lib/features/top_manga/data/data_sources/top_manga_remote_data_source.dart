@@ -17,7 +17,7 @@ class TopMangaRemoteDataSourceImpl implements TopMangaRemoteDataSource {
   @override
   Future<TopMangaModel> getTopMangas(pageIndex) async {
     final response = await client.get(
-      Uri.parse("$baseUrl/top/manga?page=${pageIndex}"),
+      Uri.parse("$baseUrl/top/manga?page=$pageIndex"),
       headers: {"Content-Type": "application/json"},
     );
     if (response.statusCode == 200) {

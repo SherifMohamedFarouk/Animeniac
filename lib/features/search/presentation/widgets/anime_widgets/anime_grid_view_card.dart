@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
@@ -16,7 +17,7 @@ class AnimeGridViewCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            CustomNavigator.push(Routes.ANIME_DETAILS, arguments: animeItem);
+            CustomNavigator.push(Routes.animeDetails, arguments: animeItem);
           },
           child: AspectRatio(
             aspectRatio: 2 / 3,
@@ -26,7 +27,7 @@ class AnimeGridViewCard extends StatelessWidget {
                 imageUrl: animeItem.images!.jpg!.imageUrl ??
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
                 width: double.infinity,
-                height: 150,
+                height: 10.h,
               ),
             ),
           ),

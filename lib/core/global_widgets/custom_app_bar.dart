@@ -1,48 +1,51 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+// import 'package:sizer/sizer.dart';
 
-import 'custom_tab_bar.dart';
+// import 'custom_tab_bar.dart';
 
-class CustomAppBar extends StatelessWidget {
-  final List<IconData> icons;
-  final int selectedIndex;
-  final Function(int) onTap;
+// class CustomAppBar extends StatelessWidget {
+//   final List<IconData> icons;
+//   final int selectedIndex;
+//   final Function(int) onTap;
 
-  const CustomAppBar(
-      {Key? key,
-      required this.icons,
-      required this.selectedIndex,
-      required this.onTap})
-      : super(key: key);
+//   const CustomAppBar(
+//       {Key? key,
+//       required this.icons,
+//       required this.selectedIndex,
+//       required this.onTap})
+//       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 65,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: const BoxDecoration(
-        // color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            // color: Theme.of(context).colorScheme.onSecondary,
-            offset: Offset(0, 2),
-            blurRadius: 4.0,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            height: double.infinity,
-            width: 600,
-            child: CustomTabBar(
-                icons: icons,
-                selectedIndex: selectedIndex,
-                action: onTap,
-                isBottomIndicator: true),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height:
+//           //  65,
+//           2.h,
+//       padding: const EdgeInsets.symmetric(horizontal: 20),
+//       decoration: const BoxDecoration(
+//         boxShadow: [
+//           BoxShadow(
+//             offset: Offset(0, 2),
+//             blurRadius: 4.0,
+//           ),
+//         ],
+//       ),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           SizedBox(
+//             height: double.infinity,
+//             width:
+//                 // 600,
+//                 10.w,
+//             child: CustomTabBar(
+//                 icons: icons,
+//                 selectedIndex: selectedIndex,
+//                 action: onTap,
+//                 isBottomIndicator: true),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

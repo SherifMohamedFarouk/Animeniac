@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
@@ -18,10 +19,10 @@ class AnimeVerticalListViewCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: () {
-        CustomNavigator.push(Routes.ANIME_DETAILS, arguments: animeData);
+        CustomNavigator.push(Routes.animeDetails, arguments: animeData);
       },
       child: Container(
-        height: 175,
+        height: 22.h,
         decoration: BoxDecoration(
           // color: AppColors.secondaryBackground,
           borderRadius: BorderRadius.circular(8),
@@ -30,13 +31,13 @@ class AnimeVerticalListViewCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(2),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: ImageWithShimmer(
                   imageUrl: animeData.images!.jpg!.imageUrl ??
                       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
-                  width: 110,
+                  width: 32.w,
                   height: double.infinity,
                 ),
               ),
