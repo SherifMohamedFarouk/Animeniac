@@ -167,15 +167,11 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
                         Routes.signIn,
                       );
                     },
-                    child: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: const BoxDecoration(
-                          color: primaryColor,
-                        ),
-                        child: Row(children: const [
-                          Text('Add'),
-                          Icon(Icons.add_box)
-                        ])))
+                    child: const Icon(
+                      Icons.favorite_border_sharp,
+                      color: secondaryColor,
+                      size: 35,
+                    ))
           ]))
     ]));
   }
