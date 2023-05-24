@@ -15,16 +15,6 @@ class WatchListModel {
       required this.malId,
       required this.largeImage});
 
-  // factory WatchlistItemModel.fromEntity(AnimeData items) {
-  //   return WatchlistItemModel(
-  //     malId: items.malId,
-  //     title: items.titleEnglish,
-  //     releaseDate: items.year,
-  //     score: items.score,
-  //     posterUrl: items.images!.jpg!.imageUrl,
-  //     rating: items.rating,
-  //   );
-  // }
   Map<String, dynamic> toMap() {
     return {
       'malId': malId,

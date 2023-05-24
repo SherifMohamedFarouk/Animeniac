@@ -13,6 +13,7 @@
     <data android:scheme="tel" />
   </intent>
 </queries>
+<uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="animeniac"
         android:name="${applicationName}"
