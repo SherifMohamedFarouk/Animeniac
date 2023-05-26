@@ -76,11 +76,13 @@ class _WatchListViewState extends State<WatchListView> {
               .collection('users')
               .doc(auth.currentUser!.uid)
               .collection('watchList')
+              .orderBy('date')
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.data != null && snapshot.data!.docs.isNotEmpty) {
               var getData = snapshot.data!.docs;
               return ListView.separated(
+                reverse: true,
                 shrinkWrap: true,
                 itemCount: snapshot.data!.size,
                 physics: const BouncingScrollPhysics(),

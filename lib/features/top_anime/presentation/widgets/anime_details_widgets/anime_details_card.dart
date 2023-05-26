@@ -126,6 +126,7 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
                             .doc(auth.currentUser!.uid)
                             .collection('watchList')
                             .add({
+                          'date': DateTime.now(),
                           'malId': widget.animeDetails.malId,
                           'posterUrl':
                               widget.animeDetails.images!.jpg!.imageUrl,
