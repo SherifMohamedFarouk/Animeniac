@@ -1,29 +1,27 @@
-import '../../data/models/watchlist_item_model.dart';
-import '../../../../main_imports.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
-
-import '../../../../../core/color/colors.dart';
-
+import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../top_anime/presentation/widgets/anime_details_widgets/anime_slider_card_image.dart';
+import '../../../../../core/color/colors.dart';
+import '../../../../top_manga/presentation/widgets/manga_details_widgets/manga_slider_card_image.dart';
+import '../../data/models/read_list_model.dart';
 
-class WatchListDetailsCard extends StatefulWidget {
-  const WatchListDetailsCard({
+class ReadListDetailsCard extends StatefulWidget {
+  const ReadListDetailsCard({
     required this.detailsWidget,
     super.key,
-    required this.watchListDetails,
+    required this.readListDetails,
   });
 
   final Widget detailsWidget;
-  final WatchListModel watchListDetails;
+  final ReadListModel readListDetails;
 
   @override
-  State<WatchListDetailsCard> createState() => _WatchListDetailsCardState();
+  State<ReadListDetailsCard> createState() => _ReadListDetailsCardState();
 }
 
-class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
+class _ReadListDetailsCardState extends State<ReadListDetailsCard> {
   bool isFav = false;
   FirebaseAuth auth = FirebaseAuth.instance;
   @override
@@ -33,7 +31,7 @@ class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
     return SafeArea(
       child: Stack(
         children: [
-          AnimeSliderCardImage(imageUrl: widget.watchListDetails.largeImage!),
+          MangaSliderCardImage(imageUrl: widget.readListDetails.largeImage!),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SizedBox(
@@ -49,7 +47,7 @@ class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.watchListDetails.title ?? 'no title',
+                            widget.readListDetails.title ?? 'no title',
                             maxLines: 2,
                             style: textTheme.titleMedium,
                           ),
@@ -63,12 +61,12 @@ class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
                           Row(
                             children: [
                               Text(
-                                'Rating : ${widget.watchListDetails.rating} ',
+                                'Status : ${widget.readListDetails.status} ',
                                 style: textTheme.bodyMedium,
                               ),
-                              if (widget.watchListDetails.rank != null) ...[
+                              if (widget.readListDetails.rank != null) ...[
                                 Text(
-                                  'Rank : ${widget.watchListDetails.rank!.toString()} ,',
+                                  'Rank : ${widget.readListDetails.rank!.toString()} ,',
                                   style: textTheme.bodySmall,
                                 ),
                               ],
@@ -77,13 +75,12 @@ class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
                         ],
                       ),
                     ),
-                    if (widget.watchListDetails.trailer != null) ...[
+                    if (widget.readListDetails.url != null) ...[
                       InkWell(
                         onTap: () async {
-                          final url =
-                              Uri.parse(widget.watchListDetails.trailer!);
-                          if (!await launchUrl(url)) {
-                            throw Exception('Could not launch $url');
+                          final urlR = Uri.parse(widget.readListDetails.url!);
+                          if (!await launchUrl(urlR)) {
+                            throw Exception('Could not launch $urlR');
                           }
                         },
                         child: Container(
@@ -94,7 +91,7 @@ class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.play_arrow_rounded,
+                            Icons.menu_book_sharp,
                           ),
                         ),
                       ),
@@ -102,33 +99,6 @@ class _WatchListDetailsCardState extends State<WatchListDetailsCard> {
                   ],
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 12,
-              left: 16,
-              right: 16,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ],
             ),
           ),
         ],

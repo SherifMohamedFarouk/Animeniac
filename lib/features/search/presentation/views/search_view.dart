@@ -1,4 +1,3 @@
-import '../../../auth/presentation/widgets/auth_widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -6,10 +5,9 @@ import 'package:sizer/sizer.dart';
 import '../../../../core/global_widgets/lottie_animations/naruto_loader.dart';
 import '../../../../core/global_widgets/message_display_widget.dart';
 import '../../../../injection_container.dart';
-
+import '../../../auth/presentation/widgets/auth_widgets/button.dart';
 import '../search_bloc/anime_search_bloc/anime_search_bloc.dart';
 import '../search_bloc/manga_search_bloc/manga_search_bloc.dart';
-
 import '../widgets/anime_widgets/anime_search_bar.dart';
 import '../widgets/anime_widgets/anime_search_grid_view.dart';
 import '../widgets/manga_widgets/manga_search_bar.dart';

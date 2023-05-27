@@ -1,5 +1,4 @@
 import '../../data/models/classes/anime_data.dart';
-
 import 'top_anime_imports.dart';
 
 class AllTopAnimeView extends StatefulWidget {

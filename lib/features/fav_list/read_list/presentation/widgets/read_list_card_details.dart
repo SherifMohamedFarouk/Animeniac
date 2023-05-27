@@ -1,33 +1,33 @@
-import '../../data/models/watchlist_item_model.dart';
+import '../../data/models/read_list_model.dart';
 import 'package:flutter/material.dart';
 
-class WatchListCardDetails extends StatelessWidget {
-  const WatchListCardDetails({
+class ReadListCardDetails extends StatelessWidget {
+  const ReadListCardDetails({
     super.key,
-    required this.watchListDetails,
+    required this.readListDetails,
   });
-  final WatchListModel watchListDetails;
+  final ReadListModel readListDetails;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    if (watchListDetails.episodes != null &&
-        watchListDetails.releaseDate != null &&
-        watchListDetails.score != null) {
+    if (readListDetails.chapters != null &&
+        readListDetails.releaseDate != null &&
+        readListDetails.score != null) {
       return Row(
         children: [
-          if (watchListDetails.episodes != null) ...[
+          if (readListDetails.chapters != null) ...[
             Text(
-              'Episodes : ${watchListDetails.episodes!.toString()} ,',
+              'Episodes : ${readListDetails.chapters!.toString()} ,',
               style: textTheme.bodyLarge,
             ),
           ],
-          if (watchListDetails.releaseDate != null) ...[
+          if (readListDetails.releaseDate != null) ...[
             Text(
-              'Year : ${watchListDetails.releaseDate.toString()} ,',
+              'Year : ${readListDetails.releaseDate.toString()} ,',
               style: textTheme.bodyLarge,
             ),
           ] else ...[
-            if (watchListDetails.score != null) ...[]
+            if (readListDetails.score != null) ...[]
           ],
           Text(
             'Score:',
@@ -39,7 +39,7 @@ class WatchListCardDetails extends StatelessWidget {
             size: 18,
           ),
           Text(
-            watchListDetails.score!.toString(),
+            readListDetails.score!.toString(),
             style: textTheme.bodyLarge,
           ),
         ],

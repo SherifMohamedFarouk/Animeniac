@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../fav_list/fav_list.dart';
 import '../search/presentation/views/search_view.dart';
-import '../watch_list/presentation/views/watch_list.dart';
 import 'nav_bar_imports.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
     const TopAnimeView(),
     const TopMangaView(),
     const SearchView(),
-    const WatchListView(),
+    const FavListView(),
     const SettingsScreen(),
   ];
   final List<IconData> _icons = const [

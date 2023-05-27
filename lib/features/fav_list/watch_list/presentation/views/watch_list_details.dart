@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/global_widgets/top_bar.dart';
-import '../../../top_anime/presentation/widgets/anime_details_widgets/anime_overview_section.dart';
-import '../../../top_anime/presentation/widgets/anime_details_widgets/anime_section_title.dart';
-import '../../data/models/watchlist_item_model.dart';
+import '../../../../../core/global_widgets/top_bar.dart';
+import '../../../../top_anime/presentation/widgets/anime_details_widgets/anime_overview_section.dart';
+import '../../../../top_anime/presentation/widgets/anime_details_widgets/anime_section_title.dart';
+
+import '../../data/models/watch_list_model.dart';
 import '../widgets/watch_list_card_details.dart';
 import '../widgets/watch_list_details_card.dart';
 

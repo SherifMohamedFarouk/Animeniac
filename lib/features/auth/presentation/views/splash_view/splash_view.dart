@@ -1,6 +1,6 @@
-import '../../../../../core/navigation/custom_navigation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
 
 class SplashView extends StatefulWidget {

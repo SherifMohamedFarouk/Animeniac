@@ -1,10 +1,10 @@
-import '../../data/models/watchlist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/global_widgets/image_with_shimmer.dart';
 import '../../../../../core/navigation/custom_navigation.dart';
 import '../../../../../core/navigation/routes.dart';
+import '../../data/models/watch_list_model.dart';
 
 class WatchListViewCard extends StatelessWidget {
   const WatchListViewCard({

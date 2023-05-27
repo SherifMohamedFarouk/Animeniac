@@ -18,7 +18,7 @@ class MangaCardDetails extends StatelessWidget {
         children: [
           if (mangaDetails.chapters != null) ...[
             Text(
-              'Episodes : ${mangaDetails.chapters!.toString()} ,',
+              'Chapters : ${mangaDetails.chapters!.toString()} ,',
               style: textTheme.bodyLarge,
             ),
             // const CircleDot(),

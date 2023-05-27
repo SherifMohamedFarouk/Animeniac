@@ -1,7 +1,7 @@
-import '../../../../../core/util/snackbar_message.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/global_widgets/login_top_bar.dart';
+import '../../../../../core/util/snackbar_message.dart';
 import 'sign_in_imports.dart';
 
 class SignInBody extends StatefulWidget {

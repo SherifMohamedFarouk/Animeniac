@@ -104,19 +104,7 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
             left: 16,
             right: 16,
           ),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.arrow_back_ios_new_rounded,
-                        size: 20))),
+          child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             FirebaseAuth.instance.currentUser != null
                 ? InkWell(
                     onTap: () async {
@@ -179,17 +167,19 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
 
   //functions
   void doesFavAlreadyExist(malId) async {
-    final QuerySnapshot result = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(auth.currentUser!.uid)
-        .collection('watchList')
-        .where('malId', isEqualTo: malId)
-        .limit(1)
-        .get();
-    final List<DocumentSnapshot> documents = result.docs;
-    setState(() {
-      isFav = documents.length == 1;
-      if (isFav) docId = documents.first.id;
-    });
+    if (FirebaseAuth.instance.currentUser != null) {
+      final QuerySnapshot result = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('watchList')
+          .where('malId', isEqualTo: malId)
+          .limit(1)
+          .get();
+      final List<DocumentSnapshot> documents = result.docs;
+      setState(() {
+        isFav = documents.length == 1;
+        if (isFav) docId = documents.first.id;
+      });
+    }
   }
 }

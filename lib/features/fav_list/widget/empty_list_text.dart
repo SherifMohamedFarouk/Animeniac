@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EmptyWatchlistText extends StatelessWidget {
-  const EmptyWatchlistText({super.key});
+class EmptylistText extends StatelessWidget {
+  const EmptylistText({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,14 +10,14 @@ class EmptyWatchlistText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Watchlist Is Empty',
+          'Your List Is Empty',
           style: textTheme.titleMedium,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 6),
           child: Center(
             child: Text(
-              'After adding animes to watchlist, they will appear here.',
+              'After adding items to your list, they will appear here.',
               style: textTheme.bodyLarge,
             ),
           ),

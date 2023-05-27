@@ -1,9 +1,12 @@
-import '../../features/watch_list/data/models/watchlist_item_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/views/sign_in_view/sign_in_view.dart';
 import '../../features/auth/presentation/views/sign_up_view/sign_up_view.dart';
 import '../../features/auth/presentation/views/splash_view/splash_view.dart';
+import '../../features/fav_list/read_list/data/models/read_list_model.dart';
+import '../../features/fav_list/read_list/presentation/views/read_list_details.dart';
+import '../../features/fav_list/watch_list/data/models/watch_list_model.dart';
+import '../../features/fav_list/watch_list/presentation/views/watch_list_details.dart';
 import '../../features/nav_screen/nav_bar_screen.dart';
 import '../../features/top_anime/data/models/classes/anime_data.dart';
 import '../../features/top_anime/presentation/views/all_top_animes_view.dart';
@@ -11,8 +14,6 @@ import '../../features/top_anime/presentation/views/anime_details.dart';
 import '../../features/top_manga/data/models/classes/manga_data.dart';
 import '../../features/top_manga/presentation/views/all_top_manga_view.dart';
 import '../../features/top_manga/presentation/views/manga_details_view.dart';
-import '../../features/watch_list/presentation/views/watch_list.dart';
-import '../../features/watch_list/presentation/views/watch_list_details.dart';
 import 'routes.dart';
 
 abstract class CustomNavigator {
@@ -33,8 +34,6 @@ abstract class CustomNavigator {
         return MaterialPageRoute(builder: (_) => const SignInView());
       case Routes.signUp:
         return MaterialPageRoute(builder: (_) => const SignUpView());
-      case Routes.watchList:
-        return MaterialPageRoute(builder: (_) => const WatchListView());
       case Routes.allTopAnimes:
         return MaterialPageRoute(builder: (_) => const AllTopAnimeView());
       case Routes.allTopMangas:
@@ -56,6 +55,12 @@ abstract class CustomNavigator {
         return MaterialPageRoute(
             builder: (_) => WatchListDetailsView(
                   watchListDetails: watchListDetails,
+                ));
+      case Routes.readListDetails:
+        ReadListModel readListDetails = arguments as ReadListModel;
+        return MaterialPageRoute(
+            builder: (_) => ReadListDetailsView(
+                  readListDetails: readListDetails,
                 ));
       default:
         return MaterialPageRoute(builder: (_) => const SplashView());
