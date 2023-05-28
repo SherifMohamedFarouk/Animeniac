@@ -1,14 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../../../top_anime/presentation/widgets/anime_details_widgets/anime_slider_card_image.dart';
-import '../../data/models/watch_list_model.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/color/colors.dart';
-
-import 'package:url_launcher/url_launcher.dart';
+import '../../../../top_anime/presentation/widgets/anime_details_widgets/anime_slider_card_image.dart';
+import '../../data/models/watch_list_model.dart';
 
 class WatchListDetailsCard extends StatefulWidget {
   const WatchListDetailsCard({

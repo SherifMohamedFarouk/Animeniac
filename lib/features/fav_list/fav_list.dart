@@ -1,4 +1,4 @@
-import 'package:animeniac/features/fav_list/read_list/data/models/read_list_model.dart';
+import 'read_list/data/models/read_list_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';

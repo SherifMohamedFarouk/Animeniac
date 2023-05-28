@@ -152,9 +152,7 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
                     ))
                 : InkWell(
                     onTap: () {
-                      CustomNavigator.push(
-                        Routes.signIn,
-                      );
+                      CustomNavigator.push(Routes.signIn, clean: true);
                     },
                     child: const Icon(
                       Icons.favorite_border_sharp,

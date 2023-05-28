@@ -1,3 +1,4 @@
+import '../../features/auth/presentation/views/reset_pw_view/reset_password_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/views/sign_in_view/sign_in_view.dart';
@@ -34,6 +35,8 @@ abstract class CustomNavigator {
         return MaterialPageRoute(builder: (_) => const SignInView());
       case Routes.signUp:
         return MaterialPageRoute(builder: (_) => const SignUpView());
+      case Routes.resetPassword:
+        return MaterialPageRoute(builder: (_) => const ResetPassword());
       case Routes.allTopAnimes:
         return MaterialPageRoute(builder: (_) => const AllTopAnimeView());
       case Routes.allTopMangas:

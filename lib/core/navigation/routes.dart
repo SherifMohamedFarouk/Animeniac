@@ -10,4 +10,5 @@ abstract class Routes {
   static const readListDetails = "READLIST_DETAILS";
   static const allTopAnimes = "ALL_TOP_ANIMES";
   static const allTopMangas = "ALL_TOP_MANGAS";
+  static const resetPassword = "RESET_PASSWORD";
 }

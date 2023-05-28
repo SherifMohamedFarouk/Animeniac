@@ -1,5 +1,4 @@
-import 'package:sizer/sizer.dart';
-
+import '../../../../top_anime/presentation/widgets/anime_details_widgets/widgets.imports.dart';
 import 'sign_up_imports.dart';
 
 class SignUpView extends StatefulWidget {
@@ -10,6 +9,7 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -221,9 +221,14 @@ class _SignUpViewState extends State<SignUpView> {
                   if (state is AuthLoading) {
                     context.loaderOverlay
                         .show(widget: const ProcessingOverLay());
-                  } else if (state is AuthSuccess) {
-                    CustomNavigator.pop();
+                  } else if (state is AuthSignUpSuccess) {
+                    CustomNavigator.push(Routes.signIn, clean: true);
+                    auth.signOut();
+
                     context.loaderOverlay.hide();
+                    SnackBarMessage().showSuccessSnackBar(
+                        message: "You've Succesfully Signed Up",
+                        context: context);
                   } else if (state is AuthFailure) {
                     context.loaderOverlay.hide();
                   }
@@ -258,7 +263,7 @@ class _SignUpViewState extends State<SignUpView> {
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () {
-                        Navigator.pop(context);
+                        CustomNavigator.pop();
                       },
                       child: Text("log_in".tr(context),
                           overflow: TextOverflow.ellipsis),

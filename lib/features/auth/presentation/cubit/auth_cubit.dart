@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
         password: password,
         name: name,
       ));
-      emit(AuthSuccess());
+      emit(AuthSignUpSuccess());
     } catch (error) {
       emit(AuthFailure());
     }

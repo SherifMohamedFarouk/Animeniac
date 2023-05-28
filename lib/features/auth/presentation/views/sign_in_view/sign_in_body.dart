@@ -35,7 +35,7 @@ class _SignInBodyState extends State<SignInBody> {
     var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: const LoginTopBar(title: 'Login To Make A WatchList'),
+      appBar: const LoginTopBar(title: 'Login to make a Fav List'),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -120,7 +120,9 @@ class _SignInBodyState extends State<SignInBody> {
             InkWell(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onTap: () {},
+              onTap: () {
+                CustomNavigator.push(Routes.resetPassword);
+              },
               child: Text(
                 "forgot_pw".tr(context),
                 overflow: TextOverflow.ellipsis,
@@ -187,6 +189,18 @@ class _SignInBodyState extends State<SignInBody> {
                   ],
                 ),
               ),
+            ),
+            Center(
+              child: TextButton(
+                  onPressed: () {
+                    CustomNavigator.push(Routes.main, clean: true);
+                  },
+                  child: const Text(
+                    'Back To Main Page',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: primaryColor),
+                  )),
             ),
             SizedBox(height: 25.h),
           ],

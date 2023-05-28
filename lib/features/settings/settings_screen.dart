@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/color/colors.dart';
@@ -14,6 +15,13 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+  String? userName;
+  @override
+  void initState() {
+    super.initState();
+    showDisplayName();
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -70,6 +78,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               FirebaseAuth.instance.currentUser != null
                   ? SettingsWidget(
+                      action: () {},
+                      leadingTitle: '${'current_user'.tr(context)} : $userName',
+                      trailingIcon: const Icon(Icons.person))
+                  : const SizedBox.shrink(),
+              FirebaseAuth.instance.currentUser != null
+                  ? SettingsWidget(
                       action: () {
                         auth.signOut();
                         CustomNavigator.push(Routes.main, clean: true);
@@ -83,7 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     )
                   : SettingsWidget(
                       action: () {
-                        CustomNavigator.push(Routes.signIn, clean: false);
+                        CustomNavigator.push(Routes.signIn, clean: true);
                       },
                       leadingTitle: 'log_in'.tr(context),
                       trailingIcon: const Icon(
@@ -97,5 +111,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
         );
       },
     );
+  }
+
+  void showDisplayName() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      var collection = FirebaseFirestore.instance.collection('users');
+
+      var docSnapshot = await collection.doc(auth.currentUser!.uid).get();
+
+      Map<String, dynamic> data = docSnapshot.data()!;
+      setState(() {
+        userName = data['name'];
+      });
+    }
   }
 }

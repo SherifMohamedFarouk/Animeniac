@@ -156,9 +156,7 @@ class _MangaDetailsCardState extends State<MangaDetailsCard> {
                     ))
                 : InkWell(
                     onTap: () {
-                      CustomNavigator.push(
-                        Routes.signIn,
-                      );
+                      CustomNavigator.push(Routes.signIn, clean: true);
                     },
                     child: const Icon(
                       Icons.favorite_border_sharp,

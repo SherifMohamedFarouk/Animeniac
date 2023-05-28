@@ -1,5 +1,6 @@
-import '../../data/models/read_list_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/models/read_list_model.dart';
 
 class ReadListCardDetails extends StatelessWidget {
   const ReadListCardDetails({

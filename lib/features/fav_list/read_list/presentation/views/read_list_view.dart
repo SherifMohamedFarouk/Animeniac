@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/color/colors.dart';
-
 import '../../../widget/empty_list_text.dart';
 import '../../data/models/read_list_model.dart';
 import '../widgets/read_list_view_card.dart';
