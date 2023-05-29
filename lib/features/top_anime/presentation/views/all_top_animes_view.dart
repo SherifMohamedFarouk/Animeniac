@@ -17,7 +17,7 @@ class _AllTopAnimeViewState extends State<AllTopAnimeView> {
       child: Scaffold(
         appBar: const TopBar(
           title: 'assets/images/Animeniac.png',
-          page: 'Animes',
+          page: 'Anime',
         ),
         body: BlocConsumer<AnimesBloc, AnimeState>(
           listener: (context, state) {
