@@ -9,3 +9,4 @@ export '../../../../../core/navigation/custom_navigation.dart';
 export '../../../../../core/navigation/routes.dart';
 export '../../../data/models/classes/manga_data.dart';
 export '../top_manga_widgets/manga_slider_card_image.dart';
+export '../../../../../core/util/snackbar_message.dart';

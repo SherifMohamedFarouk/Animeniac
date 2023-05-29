@@ -109,34 +109,9 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
                 ? InkWell(
                     onTap: () async {
                       if (!isFav) {
-                        FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(auth.currentUser!.uid)
-                            .collection('watchList')
-                            .add({
-                          'date': DateTime.now(),
-                          'malId': widget.animeDetails.malId,
-                          'posterUrl':
-                              widget.animeDetails.images!.jpg!.imageUrl,
-                          'rating': widget.animeDetails.rating,
-                          'releaseDate': widget.animeDetails.year,
-                          'score': widget.animeDetails.score,
-                          'title': widget.animeDetails.titleEnglish ??
-                              widget.animeDetails.title,
-                          'largeImage':
-                              widget.animeDetails.images!.jpg!.largeImageUrl,
-                          'rank': widget.animeDetails.rank,
-                          'trailer': widget.animeDetails.trailer!.url,
-                          'description': widget.animeDetails.synopsis,
-                          'episodes': widget.animeDetails.episodes,
-                        });
+                        addToAnimeListFireBase();
                       } else {
-                        FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(auth.currentUser!.uid)
-                            .collection('watchList')
-                            .doc(docId)
-                            .delete();
+                        deleteFromAnimeListFireBase();
                       }
 
                       setState(() {
@@ -178,6 +153,50 @@ class _AnimeDetailsCardState extends State<AnimeDetailsCard> {
         isFav = documents.length == 1;
         if (isFav) docId = documents.first.id;
       });
+    }
+  }
+
+  void addToAnimeListFireBase() {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('watchList')
+          .add({
+        'date': DateTime.now(),
+        'malId': widget.animeDetails.malId,
+        'posterUrl': widget.animeDetails.images!.jpg!.imageUrl,
+        'rating': widget.animeDetails.rating,
+        'releaseDate': widget.animeDetails.year,
+        'score': widget.animeDetails.score,
+        'title': widget.animeDetails.titleEnglish ?? widget.animeDetails.title,
+        'largeImage': widget.animeDetails.images!.jpg!.largeImageUrl,
+        'rank': widget.animeDetails.rank,
+        'trailer': widget.animeDetails.trailer!.url,
+        'description': widget.animeDetails.synopsis,
+        'episodes': widget.animeDetails.episodes,
+      });
+    } on FirebaseAuthException catch (error) {
+      SnackBarMessage().showErrorSnackBar(message: "$error", context: context);
+    } catch (error) {
+      SnackBarMessage()
+          .showErrorSnackBar(message: "Connection Error", context: context);
+    }
+  }
+
+  void deleteFromAnimeListFireBase() {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('watchList')
+          .doc(docId)
+          .delete();
+    } on FirebaseAuthException catch (error) {
+      SnackBarMessage().showErrorSnackBar(message: "$error", context: context);
+    } catch (error) {
+      SnackBarMessage()
+          .showErrorSnackBar(message: "Connection Error", context: context);
     }
   }
 }

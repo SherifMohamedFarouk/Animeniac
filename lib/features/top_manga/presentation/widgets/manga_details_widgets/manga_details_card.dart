@@ -112,35 +112,9 @@ class _MangaDetailsCardState extends State<MangaDetailsCard> {
                 ? InkWell(
                     onTap: () async {
                       if (!isFav) {
-                        FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(auth.currentUser!.uid)
-                            .collection('readList')
-                            .add({
-                          'date': DateTime.now(),
-                          'malId': widget.mangaDetails.malId,
-                          'posterUrl':
-                              widget.mangaDetails.images!.jpg!.imageUrl,
-                          'status': widget.mangaDetails.status,
-                          'releaseDate':
-                              widget.mangaDetails.published!.prop!.from!.year,
-                          'score': widget.mangaDetails.score,
-                          'title': widget.mangaDetails.titleEnglish ??
-                              widget.mangaDetails.title,
-                          'largeImage':
-                              widget.mangaDetails.images!.jpg!.largeImageUrl,
-                          'rank': widget.mangaDetails.rank,
-                          'url': widget.mangaDetails.url,
-                          'description': widget.mangaDetails.synopsis,
-                          'chapters': widget.mangaDetails.chapters,
-                        });
+                        addToMangaListFireBase();
                       } else {
-                        FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(auth.currentUser!.uid)
-                            .collection('readList')
-                            .doc(docId)
-                            .delete();
+                        deleteFromMangaListFireBase();
                       }
 
                       setState(() {
@@ -182,6 +156,50 @@ class _MangaDetailsCardState extends State<MangaDetailsCard> {
         isFav = documents.length == 1;
         if (isFav) docId = documents.first.id;
       });
+    }
+  }
+
+  void addToMangaListFireBase() {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('readList')
+          .add({
+        'date': DateTime.now(),
+        'malId': widget.mangaDetails.malId,
+        'posterUrl': widget.mangaDetails.images!.jpg!.imageUrl,
+        'status': widget.mangaDetails.status,
+        'releaseDate': widget.mangaDetails.published!.prop!.from!.year,
+        'score': widget.mangaDetails.score,
+        'title': widget.mangaDetails.titleEnglish ?? widget.mangaDetails.title,
+        'largeImage': widget.mangaDetails.images!.jpg!.largeImageUrl,
+        'rank': widget.mangaDetails.rank,
+        'url': widget.mangaDetails.url,
+        'description': widget.mangaDetails.synopsis,
+        'chapters': widget.mangaDetails.chapters,
+      });
+    } on FirebaseAuthException catch (error) {
+      SnackBarMessage().showErrorSnackBar(message: "$error", context: context);
+    } catch (error) {
+      SnackBarMessage()
+          .showErrorSnackBar(message: "Connection Error", context: context);
+    }
+  }
+
+  void deleteFromMangaListFireBase() {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('readList')
+          .doc(docId)
+          .delete();
+    } on FirebaseAuthException catch (error) {
+      SnackBarMessage().showErrorSnackBar(message: "$error", context: context);
+    } catch (error) {
+      SnackBarMessage()
+          .showErrorSnackBar(message: "Connection Error", context: context);
     }
   }
 }
