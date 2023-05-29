@@ -50,7 +50,7 @@ class _SignInBodyState extends State<SignInBody> {
                   height: 10.h,
                 ),
                 Center(
-                  child: Image.asset('assets/images/Animeniac.png'),
+                  child: Image.asset('assets/images/anime3.png'),
                 ),
                 SizedBox(
                   height: 10.h,

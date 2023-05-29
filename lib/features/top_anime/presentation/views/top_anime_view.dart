@@ -16,7 +16,7 @@ class TopAnimeView extends StatelessWidget {
       create: (context) => sl<AnimesBloc>()..add(GetTopAnimesEvent()),
       child: Scaffold(
         appBar: const TopBar(
-          title: 'assets/images/Animeniac.png',
+          title: 'assets/images/anime3.png',
           page: 'Anime',
         ),
         body: BlocBuilder<AnimesBloc, AnimeState>(

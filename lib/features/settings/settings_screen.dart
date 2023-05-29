@@ -29,7 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: TopBar(
-            title: 'assets/images/Animeniac.png',
+            title: 'assets/images/anime3.png',
             page: "settings".tr(context),
           ),
           body: Column(

@@ -21,11 +21,11 @@ class SearchText extends StatelessWidget {
             padding: const EdgeInsets.only(top: 6),
             child: isAnime
                 ? const Text(
-                    'By typing in search bar, Anime search in Animeniac and then show you the best results.',
+                    'By typing in search bar, Anime search in Ani-Me and then show you the best results.',
                     textAlign: TextAlign.center,
                   )
                 : const Text(
-                    'By typing in search bar, Manga search in Animeniac and then show you the best results.',
+                    'By typing in search bar, Manga search in Ani-Me and then show you the best results.',
                     textAlign: TextAlign.center,
                   ),
           ),

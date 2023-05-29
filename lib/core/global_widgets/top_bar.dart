@@ -26,7 +26,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         leading: Image.asset(
           title,
           fit: BoxFit.cover,
-          height: 5.h,
+          height: 6.h,
           width: 50.w,
         ),
       ),

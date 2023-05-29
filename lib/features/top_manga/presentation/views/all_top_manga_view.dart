@@ -26,7 +26,7 @@ class _AllTopMangaViewState extends State<AllTopMangaView> {
       create: (context) => sl<MangasBloc>()..add(GetTopMangasEvent()),
       child: Scaffold(
         appBar: const TopBar(
-          title: 'assets/images/Animeniac.png',
+          title: 'assets/images/anime3.png',
           page: 'Manga',
         ),
         body: BlocConsumer<MangasBloc, MangaState>(

@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
         children: [
           Center(
               child: Image.asset(
-            "assets/images/Animeniac.png",
+            "assets/images/anime3.png",
           )),
         ],
       ),

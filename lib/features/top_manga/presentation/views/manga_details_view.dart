@@ -17,7 +17,7 @@ class MangaDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const TopBar(
-          title: 'assets/images/Animeniac.png',
+          title: 'assets/images/anime3.png',
           page: 'Manga',
         ),
         body: MangaDetailsWidget(
