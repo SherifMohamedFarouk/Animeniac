@@ -1,6 +1,5 @@
 export 'package:animeniac/core/shared/extentions/validation.dart';
 export 'package:flutter/material.dart';
-export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_feather_icons/flutter_feather_icons.dart';
 export 'package:loader_overlay/loader_overlay.dart';

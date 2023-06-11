@@ -132,8 +132,10 @@ class _ResetPasswordState extends State<ResetPassword> {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text.trim());
       CustomNavigator.pop();
+
       SnackBarMessage().showSuccessSnackBar(
           message: "Password Reset Email Sent", context: context);
+
       context.loaderOverlay.hide();
     } on FirebaseAuthException catch (error) {
       SnackBarMessage().showErrorSnackBar(message: "$error", context: context);

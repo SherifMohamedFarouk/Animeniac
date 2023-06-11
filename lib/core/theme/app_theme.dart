@@ -13,13 +13,9 @@ class AppTheme {
 class ThemeColors {
   const ThemeColors._();
   static final lightTheme = ThemeData(
-      colorScheme: ColorScheme.fromSwatch(
-        brightness: Brightness.light,
-      ).copyWith(onPrimary: lightTextColor, onSecondary: blackColor),
       iconTheme: IconThemeData(color: lightIconColor),
       fontFamily: 'Poppins',
       primaryColor: primaryColor,
-      backgroundColor: lightBackgroundColor,
       scaffoldBackgroundColor: lightBackgroundColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: AppBarTheme(
@@ -43,16 +39,17 @@ class ThemeColors {
         selectedItemColor: primaryColor,
         unselectedItemColor: lightTextColor,
         type: BottomNavigationBarType.fixed,
-      ));
+      ),
+      colorScheme: ColorScheme.fromSwatch(
+        brightness: Brightness.light,
+      )
+          .copyWith(onPrimary: lightTextColor, onSecondary: blackColor)
+          .copyWith(background: lightBackgroundColor));
 
   static final darkTheme = ThemeData(
-      colorScheme: ColorScheme.fromSwatch(
-        brightness: Brightness.dark,
-      ).copyWith(onPrimary: darkTextColor, onSecondary: whiteColor),
       iconTheme: IconThemeData(color: darkIconColor),
       fontFamily: 'Poppins',
       primaryColor: primaryColor,
-      backgroundColor: darkBackgroundColor,
       scaffoldBackgroundColor: const Color(0xFF00040F),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: TextTheme(
@@ -73,9 +70,15 @@ class ThemeColors {
         selectedItemColor: primaryColor,
         unselectedItemColor: darkTextColor,
         type: BottomNavigationBarType.fixed,
-      ));
+      ),
+      colorScheme: ColorScheme.fromSwatch(
+        brightness: Brightness.dark,
+      )
+          .copyWith(onPrimary: darkTextColor, onSecondary: whiteColor)
+          .copyWith(background: darkBackgroundColor));
   static Brightness get currentSystemBrightness =>
-      SchedulerBinding.instance.window.platformBrightness;
+      SchedulerBinding.instance.platformDispatcher.platformBrightness;
+  // SchedulerBinding.instance.window.platformBrightness;
 }
 
 extension ThemeExtras on ThemeData {

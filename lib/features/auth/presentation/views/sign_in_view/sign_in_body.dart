@@ -44,18 +44,8 @@ class _SignInBodyState extends State<SignInBody> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                Center(
-                  child: Image.asset('assets/images/anime3.png'),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-              ],
+            Center(
+              child: Image.asset('assets/images/anime3.png'),
             ),
             CustomTextFieldForAuth(
                 validate: validateEmail,
